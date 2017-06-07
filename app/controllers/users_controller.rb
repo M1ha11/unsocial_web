@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /Users/1.json
   def show
     @user = User.find(params[:id])
+    @album = @user.albums
   end
 
   # GET /Users/new
