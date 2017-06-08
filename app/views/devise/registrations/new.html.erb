@@ -4,6 +4,12 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <div class="field">
+    <%= f.label :avatar do %>
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %>
+    <% end %>
+  </div>
     <%= f.input :first_name, required: true %>
     <%= f.input :last_name, required: true %>
     <%= f.input :email, required: true, autofocus: true %>
