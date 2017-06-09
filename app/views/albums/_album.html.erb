@@ -8,7 +8,7 @@
 </dl>
 </li>
 
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), albums_path(album), :method => :delete,
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), user_album_path(@user, album), :method => :delete,
       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
       :class => 'btn btn-xs btn-danger' %>
 

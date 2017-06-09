@@ -400,6 +400,7 @@ DEPENDENCIES
   mini_magick (= 4.7.0)
   minitest-reporters (= 1.1.9)
   pg (= 0.20.0)
+  pry
   puma (= 3.4.0)
   rails (= 5.0.1)
   rails-controller-testing (= 0.1.1)

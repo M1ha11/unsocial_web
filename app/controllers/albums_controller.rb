@@ -1,8 +1,9 @@
 class AlbumsController < ApplicationController
   # before_action :correct_user,   only: :destroy
+  before_action :find_user
 
   def index
-    @albums = Album.all
+    # @albums = Album.all
   end
 
   def new
@@ -10,7 +11,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = current_user.albums.find(1)
+    # @album = current_user.albums.find(1)
   end
 
   def edit
@@ -27,9 +28,10 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = current_user.albums.build(album_params)
-    @album.destroy
-    flash[:success] = "Album deleted"
+    @album = @user.albums.find(params[:id])
+    if @album.destroy
+      flash[:success] = "Album deleted"
+    end
     redirect_to request.referrer || root_url
   end
 
@@ -37,6 +39,10 @@ class AlbumsController < ApplicationController
 
     def album_params
       params.require(:album).permit(:title, :description)
+    end
+
+    def find_user
+      @user = User.find(params[:user_id])
     end
 
     # def correct_user

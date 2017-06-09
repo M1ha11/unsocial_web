@@ -12,7 +12,7 @@
   <dt><strong><%= model_class.human_attribute_name(:adress) %>:</strong></dt>
   <dd><%= @user.adress %></dd>
   <%= link_to t('.new', :default => t("helpers.links.new")),
-              new_albums_path, :class => 'btn btn-primary' %>
+              new_user_album_path(@user), :class => 'btn btn-primary' %>
   <ol class="albums">
     <%= render @albums %>
   </ol>

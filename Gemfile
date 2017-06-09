@@ -20,6 +20,7 @@ gem 'fog',                     '1.40.0'
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'devise'
+gem 'pry'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
