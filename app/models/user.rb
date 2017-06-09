@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  mount_uploader :avatar, AvatarUploader
+  has_many :albums, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :albums, dependent: :destroy
 
+  mount_uploader :avatar, AvatarUploader
   # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar
