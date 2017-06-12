@@ -25,16 +25,6 @@ ActiveRecord::Schema.define(version: 20170609140424) do
     t.index ["user_id"], name: "index_albums_on_user_id", using: :btree
   end
 
-  create_table "images", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "album_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["album_id", "created_at"], name: "index_images_on_album_id_and_created_at", using: :btree
-    t.index ["album_id"], name: "index_images_on_album_id", using: :btree
-  end
-
   create_table "photos", force: :cascade do |t|
     t.string   "image"
     t.string   "name"
@@ -68,6 +58,5 @@ ActiveRecord::Schema.define(version: 20170609140424) do
   end
 
   add_foreign_key "albums", "users"
-  add_foreign_key "images", "albums"
   add_foreign_key "photos", "albums"
 end

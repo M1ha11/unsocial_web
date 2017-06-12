@@ -12,6 +12,6 @@ class Photo < ApplicationRecord
   validates_processing_of :image
 
   def image_size_validation
-    errors[:image] << "should be less than 20MB" if avatar.size > 20.megabytes
+    errors[:image] << "should be less than 20MB" if image.size > 20.megabytes
   end
 end

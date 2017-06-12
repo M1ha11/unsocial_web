@@ -2,9 +2,9 @@ class AlbumsController < ApplicationController
   before_action :correct_user,   only: [:destroy, :edit]
   before_action :find_user
 
-  # def index
-  #   @albums = Album.all
-  # end
+  def index
+    @albums = Album.all
+  end
 
   def new
     @album = Album.new
