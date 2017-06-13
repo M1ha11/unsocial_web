@@ -3,6 +3,8 @@ class PhotosController < ApplicationController
   before_action :find_user
   before_action :find_album
 
+  load_and_authorize_resource
+
   def index
     @photos = Photo.all
   end
@@ -12,7 +14,7 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photos = @album.photos
+    @comments = @photo.comments
   end
 
   def edit
@@ -50,7 +52,7 @@ class PhotosController < ApplicationController
   private
 
     def photo_params
-      params.require(:photo).permit(:image, :name, :description)
+      params.require(:photo).permit(:image, :name, :description, :user_id, :album_id)
     end
 
     def find_user

@@ -1,0 +1,15 @@
+<%- model_class = Photo -%>
+<div class="page-header">
+
+</div>
+
+<dl class="dl-horizontal">
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_user_album_photo_comment_path(@user, @album, @photo), :class => 'btn btn-primary' %>
+  <ol class="comments">
+    <%= render @comments %>
+  </ol>
+</dl>
+
+
+
