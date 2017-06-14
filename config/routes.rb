@@ -6,6 +6,10 @@ Rails.application.routes.draw do
         resources :comments
       end
     end
+    member do
+      get :following, :followers
+    end
   end
+  resources :interrelationships, only: [:create, :destroy]
   root 'home_page#index'
 end

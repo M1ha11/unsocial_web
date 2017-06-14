@@ -15,6 +15,10 @@ class PhotosController < ApplicationController
 
   def show
     @comments = @photo.comments
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit
