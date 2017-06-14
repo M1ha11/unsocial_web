@@ -5,8 +5,8 @@ class User < ApplicationRecord
                                     foreign_key: "follower_id",
                                     dependent:   :destroy
   has_many :passive_interrelationship, class_name:  "Interrelationship",
-                                   foreign_key: "followed_id",
-                                   dependent:   :destroy
+                                    foreign_key: "followed_id",
+                                    dependent:   :destroy
   has_many :following, through: :active_interrelationship, source: :followed
   has_many :followers, through: :passive_interrelationship, source: :follower
 
@@ -14,7 +14,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :avatar, AvatarUploader
-  # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar
 
@@ -29,10 +28,4 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
-
-  private
-
-    def avatar_size_validation
-      errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes
-    end
 end

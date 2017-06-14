@@ -48,5 +48,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
+  def size_range
+    1..20.megabytes
+  end
 end

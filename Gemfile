@@ -21,9 +21,8 @@ gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'pry'
-gem 'cancancan'
 gem "pry-rails", group:"development"
-
+gem 'cancancan'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
