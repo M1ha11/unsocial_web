@@ -1,2 +1,6 @@
 <h1>Simple Social web</h1>
-<p><%= link_to "Show user", current_user %></p>
+  <% if signed_in? %>
+  <%= render current_user %>
+  <% else %>
+  <p><%= link_to "Sign up", new_user_registration_path %></p>
+  <% end %>
