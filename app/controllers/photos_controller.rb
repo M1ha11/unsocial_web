@@ -29,7 +29,7 @@ class PhotosController < ApplicationController
     @photo = @album.photos.find(params[:id])
     if @album.update_attributes(album_params)
       flash[:success] = "Photo updated"
-      redirect_to current_user
+      redirect_to root_path
     else
       render 'edit'
     end
@@ -39,7 +39,7 @@ class PhotosController < ApplicationController
     @photo = @album.photos.build(photo_params)
     if @photo.save
       flash[:success] = "Photo created!"
-      redirect_to current_user
+      redirect_to root_path
     else
       render 'home_page#index'
     end

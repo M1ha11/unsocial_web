@@ -24,7 +24,7 @@ class AlbumsController < ApplicationController
     @album = @user.albums.find(params[:id])
     if @album.update_attributes(album_params)
       flash[:success] = "Album updated"
-      redirect_to current_user
+      redirect_to root_path
     else
       render 'edit'
     end
@@ -34,7 +34,7 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.build(album_params)
     if @album.save
       flash[:success] = "Album created!"
-      redirect_to current_user
+      redirect_to root_path
     else
       render 'home_page#index'
     end
