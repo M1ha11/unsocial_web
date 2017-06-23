@@ -129,6 +129,25 @@ footer {
   }
 }
 
+/* photo */
+
+.photo_container {
+    width: 400px;
+    height: 500px;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      position: relative;
+      left: 30px;
+    }
+}
+
+.photo_description {
+  p {
+  text-align: center;
+  }
+}
 
 /* forms */
 
