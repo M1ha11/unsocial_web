@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-3">
     <dd><img src = <%= user.avatar %> /></dd>
-    <dd><%= user.first_name + user.last_name %></dd>
+    <dd><%= user.first_name + " " + user.last_name %></dd>
     <%= link_to t('.new', :default => t("helpers.links.new")), new_user_album_path(user), :class => 'btn btn-primary' %>
   </div>
   <div class="col-md-9">

@@ -44,7 +44,7 @@ class AlbumsController < ApplicationController
     if @album.destroy
       flash[:success] = "Album deleted"
     end
-    redirect_to request.referrer || root_url
+    redirect_to root_url
   end
 
   private

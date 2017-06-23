@@ -1,18 +1,14 @@
 <%- model_class = Album -%>
-<div class="col-md-4">
-  <h2><%= album.title %></h2>
-  <% if album.photos.first %>
+<div class="col-md-4 album_description">
+    <h2><%= album.title %></h2>
     <div class="album_container">
-      <img src = <%= album.photos.first.image.thumb %> />
+      <a href=<%= user_album_path(@user, album) %>>
+        <% if album.photos.first %>
+          <img src= <%= album.photos.first.image.thumb %> />
+        <% else %>
+          <%= image_tag "blank-album.jpg" %>
+        <% end %>
+      </a>
     </div>
-  <% end %>
   <p><%= album.description %></p>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), user_album_path(@user, album), :method => :delete,
-      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-      :class => 'btn btn-s btn-danger' %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                edit_user_album_path(@user, album), :class => 'btn btn-s btn-default' %>
-  <%= link_to t('.show', :default => t("helpers.links.open")),
-                user_album_path(@user, album), :class => 'btn btn-s btn-default' %>
-
 </div>

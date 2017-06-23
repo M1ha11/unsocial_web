@@ -46,11 +46,10 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
+  font-size: 18px;
+  margin-top: 5px;
   text-align: center;
-  font-weight: normal;
+  font-weight: bold;
   color: $gray-light;
 }
 
@@ -110,58 +109,26 @@ footer {
   }
 }
 
-/* sidebar */
-
-aside {
-  section.user_info {
-    margin-top: 20px;
-  }
-  section {
-    padding: 10px 0;
-    margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
-    }
-  }
-}
+/* album */
 
 .album_container {
     width: 200px;
-    height: 100px;
+    height: 200px;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      position: relative;
+      left: 30px;
+    }
 }
 
-.album_container img {
-    width: 100%;
-    height: auto;
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
+.album_description {
+  p {
+  text-align: center;
   }
 }
 
-.users.follow {
-  padding: 0;
-}
 
 /* forms */
 
