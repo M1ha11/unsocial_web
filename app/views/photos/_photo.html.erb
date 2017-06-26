@@ -1,7 +1,7 @@
 <%- model_class = Photo -%>
 <div class="col-md-6 photo_description">
   <div class="photo_container">
-    <a href=<%= user_album_photo_path(@user, @album, photo) %> , remote: true >
+    <a href="<%= user_album_photo_path(@user, @album, photo) %>", data-remote="true">
       <img src = <%= photo.image.thumb %> />
     </a>
     <dd><%= photo.description %></dd>

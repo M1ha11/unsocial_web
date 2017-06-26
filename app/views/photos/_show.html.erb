@@ -1,13 +1,13 @@
 <%- model_class = Photo -%>
 
-<div class="modal fade" id="modal-1">
+<div class="modal fade" id="modal-<%=@photo.id%>">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button class="close" type="button" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Modal window</h4>
         <div class="modal-body">
-          <p>
+          <p> <%= @photo.description %>
              <dl class="dl-horizontal">
               <%= link_to t('.new', :default => t("helpers.links.new")),
                   new_user_album_photo_comment_path(@user, @album, @photo), :class => 'btn btn-primary' %>

@@ -23,6 +23,7 @@ gem 'devise'
 gem 'pry'
 gem "pry-rails", group:"development"
 gem 'cancancan'
+gem 'slim', '3.0.8'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
