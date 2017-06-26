@@ -415,7 +415,7 @@ DEPENDENCIES
   rails-controller-testing (= 0.1.1)
   sass-rails (= 5.0.6)
   simple_form
-  slim
+  slim (= 3.0.8)
   spring (= 1.7.2)
   spring-watcher-listen (= 2.0.0)
   turbolinks (= 5.0.1)
