@@ -1,0 +1,10 @@
+- model_class = Photo
+.col-md-6.photo_description
+  .photo_container
+    a href = user_album_photo_path(@user, @album, photo) data-remote=true
+      img src = photo.image.thumb
+    dd
+      = photo.description
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), user_album_photo_path(@user, @album, photo), :method => :delete,
+            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+            :class => 'btn btn-xs btn-danger'

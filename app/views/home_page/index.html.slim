@@ -1,0 +1,9 @@
+- if signed_in?
+  = render current_user
+- else
+  .center.jumbotron
+    h1
+      | Welcome to the Simple Social Web
+    h2
+      | This is the home page for the sample application.
+    = link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary"

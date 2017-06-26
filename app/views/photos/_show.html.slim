@@ -1,0 +1,22 @@
+- model_class = Photo
+|  <div class="modal fade" id="modal-
+=@photo.id
+| ">
+.modal-dialog.modal-lg
+  .modal-content
+    .modal-header
+      button.close[type="button" data-dismiss="modal"]
+        | ×
+      h4.modal-title
+        | Modal window
+      .modal-body
+        p
+          = @photo.description
+        dl.dl-horizontal
+          = link_to t('.new', :default => t("helpers.links.new")),
+                              new_user_album_photo_comment_path(@user, @album, @photo), :class => 'btn btn-primary'
+        ol.comments
+          = render @comments
+      .modal-footer
+        button.btn.btn-danger[type="button" data-dismiss="modal"]
+          | Close

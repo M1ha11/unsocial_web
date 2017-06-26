@@ -1,0 +1,10 @@
+- model_class = Album
+.col-md-4.album_description
+  h2
+    = album.title
+  .album_container
+    a href = user_album_path(@user, album)
+      - if album.photos.first
+        img src = album.photos.first.image.thumb
+      - else
+        = image_tag "blank-album.jpg"

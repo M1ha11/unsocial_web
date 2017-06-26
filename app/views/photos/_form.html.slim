@@ -1,0 +1,11 @@
+= simple_form_for @photo, url: url, :html => { :class => 'form-horizontal' } do |f|
+  .form-inputs
+    .field
+      = f.label :image do
+        = f.file_field :image
+        = f.hidden_field :image_cache
+    = f.input :name
+    = f.input :description
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")),
+                      root_path, :class => 'btn btn-default'

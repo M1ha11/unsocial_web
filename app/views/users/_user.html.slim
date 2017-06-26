@@ -1,0 +1,10 @@
+- model_class = User
+.row
+  .col-md-3
+    dd
+      img src = user.avatar
+    dd
+      = user.first_name + " " + user.last_name
+    = link_to t('.new', :default => t("helpers.links.new")), new_user_album_path(user), :class => 'btn btn-primary'
+  .col-md-9
+    = render user.albums
