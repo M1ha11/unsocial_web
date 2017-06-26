@@ -5,7 +5,6 @@
       img src = @user.avatar
     dd
       = @user.first_name + " " + @user.last_name
-      = render 'follow' if !current_user.following?(@user)
-      = render 'unfollow' if current_user.following?(@user)
+      = render 'follow_form'
   .col-md-9
     = render @user.albums
