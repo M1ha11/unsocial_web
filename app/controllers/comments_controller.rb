@@ -3,10 +3,6 @@ class CommentsController < ApplicationController
   before_action :find_album
   before_action :set_photo
 
-  def index
-    @comments = Comment.all
-  end
-
   def new
     @comment = Comment.new
   end

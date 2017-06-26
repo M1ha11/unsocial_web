@@ -11,8 +11,9 @@
         | Modal window
       .modal-body
         p
-          = @photo.description
+          img src= @photo.image
         dl.dl-horizontal
+
           = link_to t('.new', :default => t("helpers.links.new")),
                               new_user_album_photo_comment_path(@user, @album, @photo), :class => 'btn btn-primary'
         ol.comments
