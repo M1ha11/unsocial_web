@@ -1,7 +1,7 @@
 class Album < ApplicationRecord
   belongs_to :user
   has_many :photos, dependent: :destroy
-  has_many :taggings, as: :taggable
+  has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
 
   default_scope -> { order(created_at: :desc) }

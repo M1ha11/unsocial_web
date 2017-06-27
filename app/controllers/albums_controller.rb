@@ -1,6 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :correct_user,   only: [:destroy, :edit]
-  before_action :find_user
+  before_action :user
   load_and_authorize_resource
 
   def index
@@ -34,7 +33,7 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.build(album_params)
     if @album.save
       flash[:success] = "Album created!"
-      redirect_to root_path
+      redirect_to [@user, @album]
     else
       render 'home_page#index'
     end
@@ -53,12 +52,7 @@ class AlbumsController < ApplicationController
       params.require(:album).permit(:title, :description)
     end
 
-    def find_user
-      @user = User.find(params[:user_id])
-    end
-
-    def correct_user
-      @album = current_user.albums.find(params[:id])
-      redirect_to root_url if @album.nil?
+    def user
+      @user ||= User.find(params[:user_id])
     end
 end

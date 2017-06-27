@@ -1,14 +1,13 @@
 class Photo < ApplicationRecord
   belongs_to :album
   has_many :comments, dependent: :destroy
-  has_many :taggings, as: :taggable
+  has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
 
   mount_uploader :image, PictureUploader
 
-  default_scope -> { order(created_at: :desc) }
+  # default_scope -> { order(created_at: :desc) }
 
-  validates :name, presence: true, length: { maximum: 50 }
   validates :description, presence: true, length: { maximum: 140 }
 
   # Image Validation
