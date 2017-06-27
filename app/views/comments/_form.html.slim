@@ -1,4 +1,4 @@
-= simple_form_for @comment, url: url, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for :comment, url: user_album_photo_comments_path(@user, @album, @photo), remote: true do |f|
   .field
     = f.text_area :content, placeholder: "Compose new micropost..."
-  = f.submit "Post", class: "btn btn-primary"
+    = f.submit "Post", class: "btn btn-primary"

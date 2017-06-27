@@ -3,27 +3,31 @@ class CommentsController < ApplicationController
   before_action :find_album
   before_action :set_photo
 
-  def new
-    @comment = Comment.new
-  end
-
   def create
     @comment = @photo.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
       flash[:success] = "Success comment"
-      redirect_to :back
     else
       flash[:alert] = "Error comment"
-      render root_path
+    end
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
     end
   end
 
   def destroy
     @comment = @photo.comments.find(params[:id])
-    @comment.destroy
-    flash[:success] = "Comment deleted"
-    redirect_to :back
+    if @comment.destroy
+      flash[:success] = "Success deleted"
+    else
+      flash[:alert] = "Error deleting"
+    end
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
 
   private

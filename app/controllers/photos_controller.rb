@@ -19,6 +19,7 @@ class PhotosController < ApplicationController
       format.html
       format.js
     end
+    render action: 'show', layout: false if request.xhr?
   end
 
   def edit
