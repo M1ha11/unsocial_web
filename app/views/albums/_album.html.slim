@@ -5,6 +5,6 @@
   .album_container
     a href = user_album_path(@user, album)
       - if album.photos.first
-        img src = album.photos.first.image.thumb
+        = image_tag album.photos.first.image.thumb
       - else
         = image_tag "blank-album.jpg"
