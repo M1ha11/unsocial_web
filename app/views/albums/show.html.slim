@@ -7,6 +7,7 @@
                     edit_user_album_path(@user, @album), :class => 'btn btn-s btn-default'
   p
     = @album.description
+    = render @tags if @tags
 = link_to t('.new', :default => t("helpers.links.new")),
                 new_user_album_photo_path(@user, @album), :class => 'btn btn-primary'
 dl.dl-horizontal

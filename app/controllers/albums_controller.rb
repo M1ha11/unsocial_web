@@ -12,6 +12,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = @user.albums.find(params[:id])
+    @tags = @album.tags
     @photos = @album.photos
   end
 
@@ -30,7 +31,8 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = current_user.albums.build(album_params)
+    @album = @user.albums.create(album_params)
+    @album.tags = TagService.new(params[:album][:tags]).tags
     if @album.save
       flash[:success] = "Album created!"
       redirect_to [@user, @album]
@@ -48,11 +50,11 @@ class AlbumsController < ApplicationController
 
   private
 
-    def album_params
-      params.require(:album).permit(:title, :description)
-    end
+  def album_params
+    params.require(:album).permit(:title, :description)
+  end
 
-    def user
-      @user ||= User.find(params[:user_id])
-    end
+  def user
+    @user ||= User.find(params[:user_id])
+  end
 end

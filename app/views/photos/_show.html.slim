@@ -5,10 +5,10 @@
 .modal-dialog.modal-lg
   .modal-content
     .modal-header
-      button.close[type="button" data-dismiss="modal"]
-        | ×
       h3.modal-title
-        = @photo.name
+        button.close[type="button" data-dismiss="modal"]
+          | ×
+        = @photo.name unless @photo.name.nil?
       .modal-body
         .row
           .col-md-9
@@ -19,5 +19,6 @@
             = render 'comments/form'
       .modal-footer
         = @photo.description
+        = render @tags if @tags
         button.btn.btn-danger[type="button" data-dismiss="modal"]
           | Close

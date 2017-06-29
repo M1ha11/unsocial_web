@@ -1,8 +1,5 @@
 class PhotosController < ApplicationController
-  # before_action :correct_user,   only: [:destroy, :edit]
-  before_action :find_user
-  before_action :find_album
-
+  before_action :user, :album
   load_and_authorize_resource
 
   def index
@@ -15,6 +12,7 @@ class PhotosController < ApplicationController
 
   def show
     @comments = @photo.comments
+    @tags = @photo.tags
     respond_to do |format|
       format.html
       format.js
@@ -37,7 +35,8 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = @album.photos.build(photo_params)
+    @photo = @album.photos.create(photo_params)
+    @photo.tags = TagService.new(params[:photo][:tags]).tags
     if @photo.save
       flash[:success] = "Photo created!"
       redirect_to root_path
@@ -56,20 +55,15 @@ class PhotosController < ApplicationController
 
   private
 
-    def photo_params
-      params.require(:photo).permit(:image, :name, :description, :user_id, :album_id)
-    end
+  def photo_params
+    params.require(:photo).permit(:image, :description, :user_id, :album_id)
+  end
 
-    def find_user
-      @user = User.find(params[:user_id])
-    end
+  def user
+    @user = User.find(params[:user_id])
+  end
 
-    def find_album
-      @album = @user.albums.find(params[:album_id])
-    end
-
-    def correct_user
-      @album = current_user.albums.find(params[:id])
-      redirect_to root_url if @album.nil?
-    end
+  def album
+    @album = @user.albums.find(params[:album_id])
+  end
 end

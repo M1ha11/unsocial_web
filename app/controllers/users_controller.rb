@@ -1,23 +1,15 @@
 class UsersController < ApplicationController
-  before_action :find_user
+  before_action :user
 
   def show
     @albums = @user.albums
-  end
-
-  def following
-    @users = @user.following
-    render 'show_follow'
-  end
-
-  def followers
-    @users = @user.followers
-    render 'show_follow'
+    @following = @user.following
+    @followers = @user.followers
   end
 
   private
 
-    def find_user
-      @user = User.find(params[:id])
-    end
+  def user
+    @user = User.find(params[:id])
+  end
 end

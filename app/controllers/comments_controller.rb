@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :user
-  before_action :find_album
-  before_action :set_photo
+  before_action :user, :album, :photo
   load_and_authorize_resource
 
   def create
@@ -37,7 +35,7 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:content)
     end
 
-    def set_photo
+    def photo
       @photo = Photo.find(params[:photo_id])
     end
 
@@ -45,7 +43,7 @@ class CommentsController < ApplicationController
       @user ||= User.find(params[:user_id])
     end
 
-    def find_album
+    def album
       @album = @user.albums.find(params[:album_id])
     end
 end
