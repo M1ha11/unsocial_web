@@ -1,8 +1,7 @@
 class HomePageController < ApplicationController
   def index
     if signed_in?
-      @user = current_user
-      @albums = current_user.albums
+       @feed_photos = Photo.where(albums: { user: current_user.following }).includes(:album).first(10)
     end
   end
 end

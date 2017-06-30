@@ -149,8 +149,18 @@ footer {
   }
 }
 
-/* modal image */
+/* feed image */
 
+.feed_container {
+    width: 600px;
+    height: 625px;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      position: relative;
+    }
+}
 
 /* forms */
 

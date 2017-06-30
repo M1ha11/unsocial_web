@@ -4,7 +4,7 @@
       = f.label :image do
         = f.file_field :image
         = f.hidden_field :image_cache
-    = f.input :tags, input_html: { value: "", multiple: true, data: { width: '100%' }}
+    = f.input :tags, input_html: { multiple: true, data: { width: '100%' }}
     = f.input :name
     = f.input :description
     = f.button :submit, :class => 'btn-primary'

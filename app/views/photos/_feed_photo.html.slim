@@ -1,0 +1,8 @@
+- model_class = Photo
+.col-md-3
+.col-md-6
+  - @feed_photos.each do |photo|
+    .feed_container
+      a href = user_album_photo_path(photo.album.user, photo.album, photo) data-remote=true
+        = image_tag photo.image.thumb
+.col-md-3

@@ -11,17 +11,17 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = @user.albums.find(params[:id])
+    @album = user.albums.find(params[:id])
     @tags = @album.tags
     @photos = @album.photos
   end
 
   def edit
-    @album = @user.albums.find(params[:id])
+    @album = user.albums.find(params[:id])
   end
 
   def update
-    @album = @user.albums.find(params[:id])
+    @album = user.albums.find(params[:id])
     if @album.update_attributes(album_params)
       flash[:success] = "Album updated"
       redirect_to root_path
@@ -31,11 +31,11 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = @user.albums.create(album_params)
+    @album = user.albums.create(album_params)
     @album.tags = TagService.new(params[:album][:tags]).tags
     if @album.save
       flash[:success] = "Album created!"
-      redirect_to [@user, @album]
+      redirect_to [user, @album]
     else
       render 'home_page#index'
     end

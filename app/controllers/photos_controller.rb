@@ -26,7 +26,7 @@ class PhotosController < ApplicationController
 
   def update
     @photo = @album.photos.find(params[:id])
-    if @album.update_attributes(album_params)
+    if @photo.update_attributes(photo_params)
       flash[:success] = "Photo updated"
       redirect_to root_path
     else

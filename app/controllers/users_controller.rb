@@ -3,8 +3,6 @@ class UsersController < ApplicationController
 
   def show
     @albums = @user.albums
-    @following = @user.following
-    @followers = @user.followers
   end
 
   private
