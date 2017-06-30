@@ -19,11 +19,12 @@ gem 'mini_magick',             '4.7.0'
 gem 'fog',                     '1.40.0'
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
-gem 'devise'
-gem 'pry'
-gem "pry-rails", group:"development"
-gem 'cancancan'
+gem 'devise', '4.3.0'
+gem 'pry', '0.10.4'
+gem "pry-rails", '0.3.6', group:"development"
+gem 'cancancan', '2.0.0'
 gem 'slim', '3.0.8'
+gem 'pg_search', '2.0.1'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
