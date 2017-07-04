@@ -1,4 +1,5 @@
 $(document).on 'turbolinks:load', ->
+  return if App.activity
   App.activity = App.cable.subscriptions.create "ActivityChannel",
     connected: ->
       # Called when the subscription is ready for use on the server
@@ -8,7 +9,6 @@ $(document).on 'turbolinks:load', ->
 
     received: (data) ->
       console.log(data)
-
       # Called when there's incoming data on the websocket for this channel
       # iziToast.success
       #   title: 'New comment!'
