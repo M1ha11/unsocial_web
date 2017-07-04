@@ -5,6 +5,7 @@
       img src = user.avatar
     dd
       = user.first_name + " " + user.last_name
+      = render 'follow_form'
     p
       = user.followers.count
       |  followers

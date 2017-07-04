@@ -16,7 +16,8 @@ $(document).on 'turbolinks:load', ->
       iziToast.show
         color: 'dark'
         icon: 'icon-person'
-        title: 'Hey'
+        image: data.avatar
+        title: data.name
         message: data.text
         position: 'bottomRight'
         progressBarColor: 'rgb(0, 255, 184)'
@@ -24,27 +25,7 @@ $(document).on 'turbolinks:load', ->
           [
             '<button>Ok</button>'
             (instance, toast) ->
-              alert 'Hello world!'
-              return
-          ]
-          [
-            '<button>Close</button>'
-            (instance, toast) ->
-              instance.hide {
-                transitionOut: 'fadeOutUp'
-                onClose: (instance, toast, closedBy) ->
-                  console.info 'closedBy: ' + closedBy
-                  #btn2
-                  return
-
-              }, toast, 'close', 'btn2'
+              window.open data.url
               return
           ]
         ]
-        onOpen: (instance, toast) ->
-          console.info 'callback abriu!'
-          return
-        onClose: (instance, toast, closedBy) ->
-          console.info 'closedBy: ' + closedBy
-          # tells if it was closed by 'drag' or 'button'
-          return
