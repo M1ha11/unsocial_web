@@ -25,6 +25,8 @@ gem "pry-rails", '0.3.6', group:"development"
 gem 'cancancan', '2.0.0'
 gem 'slim', '3.0.8'
 gem 'pg_search', '2.0.1'
+gem 'izitoast', :git => 'https://github.com/DmitryArtyomov/iziToast-rails'
+gem 'annotate'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri

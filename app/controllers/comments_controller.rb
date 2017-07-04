@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       flash[:success] = "Success comment"
+      ActivityChannel.broadcast_to(@comment.photo.album.user, { text: @comment.content })
     else
       flash[:alert] = "Error comment"
     end

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'events/index'
+  mount ActionCable.server => '/cable'
+
   devise_for :users, path: '/', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: 'settings' }
 
   resources :users, only: [:show] do

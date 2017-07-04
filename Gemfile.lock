@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/DmitryArtyomov/iziToast-rails
+  revision: 87b7146932ce464c9015e07bf77b6a632ec7bd3f
+  specs:
+    izitoast (1.1.2.b)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -39,6 +45,9 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    annotate (2.7.2)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     ansi (1.5.0)
     arel (7.1.4)
     autoprefixer-rails (7.1.1.2)
@@ -394,6 +403,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   bcrypt (= 3.1.11)
   bootstrap-sass (= 3.3.6)
   bootstrap-will_paginate (= 1.0.0)
@@ -406,6 +416,7 @@ DEPENDENCIES
   fog (= 1.40.0)
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
+  izitoast!
   jbuilder (= 2.4.1)
   jquery-rails (= 4.1.1)
   listen (= 3.0.8)

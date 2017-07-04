@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: tags
+#
+#  id         :integer          not null, primary key
+#  content    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Tag < ApplicationRecord
   has_many :taggings
   has_many :albums, through: :taggings, source: :taggable, source_type: 'Album', dependent: :destroy

@@ -6,5 +6,12 @@
     dd
       = @user.first_name + " " + @user.last_name
       = render 'follow_form' if current_user.following?(@user)
+    p
+      = @user.followers.count
+      |  followers
+    p
+      = @user.following.count
+      |  following
+    = link_to t('.new', :default => t("helpers.links.new")), new_user_album_path(@user), :class => 'btn btn-primary'
   .col-md-9
     = render @user.albums
