@@ -1,0 +1,9 @@
+= simple_form_for :search, method: 'get', url: search_path, remote: true do |f|
+  .col-md-3
+    form.navbar-form.navbar-nav.navbar-left role="search"
+      .input-group.add-on
+        = f.text_field :q, id: :q, class: "form-control"
+        .input-group-btn
+          = f.submit "Search", class: "btn btn-default"
+          i.glyphicon.glyphicon-search
+

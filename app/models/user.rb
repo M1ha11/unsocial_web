@@ -21,7 +21,12 @@
 #  avatar                 :string
 #
 
+require 'elasticsearch/model'
+
 class User < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   has_many :albums, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :active_interrelationship, class_name:  "Interrelationship",
@@ -51,4 +56,29 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
+  def self.search(query)
+    __elasticsearch__.search(
+      {
+        query: {
+          multi_match: {
+            query: query,
+            type: "phrase_prefix",
+            fields: ['*_name'],
+          }
+        }
+      }
+    )
+  end
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :first_name, analyzer: 'english'
+      indexes :last_name, analyzer: 'english'
+    end
+  end
+
 end
+
+# for auto sync model with elastic search
+User.import force: true

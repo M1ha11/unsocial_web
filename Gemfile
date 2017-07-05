@@ -27,6 +27,8 @@ gem 'slim', '3.0.8'
 gem 'pg_search', '2.0.1'
 gem 'izitoast', :git => 'https://github.com/DmitryArtyomov/iziToast-rails'
 gem 'annotate'
+gem 'elasticsearch-model', '5.0.1'
+gem 'elasticsearch-rails', '5.0.1'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
