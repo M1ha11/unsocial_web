@@ -57,19 +57,19 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  def self.search(query)
-    __elasticsearch__.search(
-      {
-        query: {
-          multi_match: {
-            query: query,
-            type: "phrase_prefix",
-            fields: ['*_name'],
-          }
-        }
-      }
-    )
-  end
+  # def self.search(query)
+  #   __elasticsearch__.search(
+  #     {
+  #       query: {
+  #         multi_match: {
+  #           query: query,
+  #           type: "phrase_prefix",
+  #           fields: ['*_name'],
+  #         }
+  #       }
+  #     }
+  #   )
+  # end
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do

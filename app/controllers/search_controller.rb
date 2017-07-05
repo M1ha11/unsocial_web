@@ -1,13 +1,16 @@
 class SearchController < ApplicationController
   def search
-    if params[:search][:q].nil?
-      @users = []
-      @albums = []
-      @tags_search = []
+    if search_params[:q].nil?
+      @result = []
     else
-      @users = User.search(params[:search][:q]).records.all
-      @albums = Album.search(params[:search][:q]).records.all
-      @tags_search = Tag.search(params[:search][:q]).records.all
+      @result = Elasticsearch::Model.search((search_params[:q] ? (search_params[:q] + "*") : "*"), [Album, Photo, User]).records
     end
+    binding.pry
   end
+
+    private
+
+    def search_params
+      params.require(:search).permit(:q)
+    end
 end

@@ -23,19 +23,19 @@ class Album < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 140 }
 
-  def self.search(query)
-    __elasticsearch__.search(
-      {
-        query: {
-          multi_match: {
-            query: query,
-            type: "phrase_prefix",
-            fields: ['title'],
-          }
-        }
-      }
-    )
-  end
+  # def self.search(query)
+  #   __elasticsearch__.search(
+  #     {
+  #       query: {
+  #         multi_match: {
+  #           query: query,
+  #           type: "phrase_prefix",
+  #           fields: ['title'],
+  #         }
+  #       }
+  #     }
+  #   )
+  # end
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
