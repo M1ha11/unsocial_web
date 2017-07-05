@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       flash[:success] = "Success comment"
-      # ActivityChannel.broadcast_to(user, { text: @comment.content, avatar: ActionController::Base.helpers.image_path(user.avatar.url), name: user.last_name })
+      Notifications::NotifyComment.new(@comment).notify
     else
       flash[:alert] = "Error comment"
     end
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
       format.html { redirect_to :back }
       format.js
     end
-    Notifications::NotifyComment.new(@comment).notify
+
   end
 
   def destroy

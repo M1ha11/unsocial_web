@@ -22,6 +22,7 @@ class AlbumsController < ApplicationController
 
   def update
     @album = user.albums.find(params[:id])
+    @album.tags = TagService.new(params[:album][:tags]).tags
     if @album.update_attributes(album_params)
       flash[:success] = "Album updated"
       redirect_to root_path
