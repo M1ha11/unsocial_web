@@ -9,7 +9,6 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-require 'elasticsearch/model'
 
 class Album < ApplicationRecord
   include Elasticsearch::Model
@@ -23,25 +22,17 @@ class Album < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 140 }
 
-  # def self.search(query)
-  #   __elasticsearch__.search(
-  #     {
-  #       query: {
-  #         multi_match: {
-  #           query: query,
-  #           type: "phrase_prefix",
-  #           fields: ['title'],
-  #         }
-  #       }
-  #     }
-  #   )
-  # end
-
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
-      indexes :title, analyzer: 'english'
+      indexes :title
+      indexes :description
+      indexes :tags, type: "nested" do
+        indexes :content
+      end
     end
   end
-end
 
-Album.import force: true
+  def as_indexed_json(_ = nil)
+    as_json(include: { tags: { only: :content } }, except:  %i[id _id])
+  end
+end

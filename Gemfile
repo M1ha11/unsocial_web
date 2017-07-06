@@ -10,10 +10,6 @@ gem 'coffee-rails', '4.2.1'
 gem 'jquery-rails', '4.1.1'
 gem 'turbolinks', '5.0.1'
 gem 'jbuilder', '2.4.1'
-gem 'bcrypt',         '3.1.11'
-gem 'faker',          '1.7.3'
-gem 'will_paginate',           '3.1.5'
-gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave',             '1.1.0'
 gem 'mini_magick',             '4.7.0'
 gem 'fog',                     '1.40.0'
@@ -24,14 +20,15 @@ gem 'pry', '0.10.4'
 gem "pry-rails", '0.3.6', group:"development"
 gem 'cancancan', '2.0.0'
 gem 'slim', '3.0.8'
-gem 'pg_search', '2.0.1'
 gem 'izitoast', :git => 'https://github.com/DmitryArtyomov/iziToast-rails'
 gem 'annotate'
 gem 'elasticsearch-model', '5.0.1'
 gem 'elasticsearch-rails', '5.0.1'
+gem 'active_model_serializers', '0.10.6'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
+  gem 'faker',          '1.7.3'
 end
 
 group :development do

@@ -2,7 +2,7 @@
   .col-md-3
     form.navbar-form.navbar-nav.navbar-left role="search"
       .input-group.add-on
-        = f.text_field :q, id: :q, class: "form-control"
+        = f.text_field :q, id: 'search_field', autocomplete: :off, placeholder: 'Search', class: "form-control typeahead scrollable-dropdown-menu"
         .input-group-btn
           = f.submit "Search", class: "btn btn-default"
           i.glyphicon.glyphicon-search

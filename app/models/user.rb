@@ -21,8 +21,6 @@
 #  avatar                 :string
 #
 
-require 'elasticsearch/model'
-
 class User < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
@@ -57,28 +55,10 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  # def self.search(query)
-  #   __elasticsearch__.search(
-  #     {
-  #       query: {
-  #         multi_match: {
-  #           query: query,
-  #           type: "phrase_prefix",
-  #           fields: ['*_name'],
-  #         }
-  #       }
-  #     }
-  #   )
-  # end
-
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
-      indexes :first_name, analyzer: 'english'
-      indexes :last_name, analyzer: 'english'
+      indexes :first_name
+      indexes :last_name
     end
   end
-
 end
-
-# for auto sync model with elastic search
-User.import force: true

@@ -10,7 +10,6 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-require 'elasticsearch/model'
 
 class Photo < ApplicationRecord
   include Elasticsearch::Model
@@ -30,12 +29,13 @@ class Photo < ApplicationRecord
   settings index: { number_of_shards: 1 } do
     mappings dynamic: "false" do
       indexes :description
-      indexes :tags, type: "nested" do
+      indexes :tags, type: 'nested' do
         indexes :content
       end
     end
   end
+
+  def as_indexed_json(_ = nil)
+    as_json(include: { tags: { only: :content } }, except:  %i[id _id])
+  end
 end
-
-
-Photo.import force: true

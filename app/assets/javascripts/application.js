@@ -16,5 +16,6 @@
 //= require bootstrap
 //= require turbolinks
 //= require iziToast
+//= reqiure typeahead.bundle
 //= require_tree .
 
