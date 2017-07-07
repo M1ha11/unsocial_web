@@ -402,6 +402,10 @@ GEM
       execjs (~> 2.7)
       less-rails (~> 2.8, >= 2.8.0)
       railties (~> 5.0, >= 5.0.1)
+    twitter-typeahead-rails (0.11.1)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
@@ -454,6 +458,7 @@ DEPENDENCIES
   spring-watcher-listen (= 2.0.0)
   turbolinks (= 5.0.1)
   twitter-bootstrap-rails
+  twitter-typeahead-rails (= 0.11.1)
   tzinfo-data
   uglifier (= 3.0.0)
   web-console (= 3.1.1)

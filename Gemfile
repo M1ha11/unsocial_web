@@ -25,6 +25,7 @@ gem 'annotate'
 gem 'elasticsearch-model', '5.0.1'
 gem 'elasticsearch-rails', '5.0.1'
 gem 'active_model_serializers', '0.10.6'
+gem 'twitter-typeahead-rails', '0.11.1'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
