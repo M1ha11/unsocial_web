@@ -1,1 +1,1 @@
-$('.comments').html("<%= escape_javascript(render partial: @photo.comments) %>");
+$(".comment#comment<%= @comment.id %>").remove();

@@ -2,32 +2,23 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    #
-      user ||= User.new # guest user (not logged in)
-      if user
-        can :manage, :all
-        can :manage, Album, user_id: user.id
-        # can :manage, Photo, user_id: user.id, album_id: album.id
-        can :read, :all
+      user ||= User.new
+      if user.persisted?
+        alias_action :create, :read, :update, :destroy, to: :crud
+
+        can :crud, User, id: user.id
+        can :crud, Album, user_id: user.id
+        can :crud, Photo, album: { user_id: user.id }
+        can [:create, :destroy], Comment, photo: { album: { user_id: user.id } }
+        can [:create, :destroy], Comment, user_id: user.id
+        can [:create, :destroy], Interrelationship, follower_id: user.id
+        cannot :create, Interrelationship, followed_id: user.id
       end
-    #
-    # The first argument to `can` is the action you are giving the user
-    # permission to do.
-    # If you pass :manage it will apply to every action. Other common actions
-    # here are :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on.
-    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
-    # class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the
-    # objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details:
-    # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+
+        can [:read], User
+        can [:read], Album
+        can [:read], Photo
+        can [:read], Tag
+        can [:read], Comment
   end
 end

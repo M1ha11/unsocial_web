@@ -1,1 +1,2 @@
-$('.comments').html("<%= escape_javascript(render partial: @photo.comments) %>");
+$("<%= escape_javascript(render @comment) %>").appendTo('.comments');
+$('#comment_content').val('');

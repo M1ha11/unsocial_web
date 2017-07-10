@@ -8,7 +8,6 @@ class InterrelationshipsController < ApplicationController
     end
     @interrelationship = Interrelationship.where(follower_id: current_user.id).where(followed_id: @user.id).first
     Notifications::NotifyFollower.new(@interrelationship).notify
-    redirect_to @user
   end
 
   def destroy
@@ -18,6 +17,5 @@ class InterrelationshipsController < ApplicationController
       format.html { redirect_to @user }
       format.js
     end
-    redirect_to @user
   end
 end

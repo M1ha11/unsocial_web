@@ -1,10 +1,7 @@
 class PhotosController < ApplicationController
-  before_action :user, :album
-  load_and_authorize_resource
-
-  def index
-    @photos = Photo.all
-  end
+  load_and_authorize_resource :user
+  load_and_authorize_resource :album, through: :user
+  load_and_authorize_resource through: :album
 
   def new
     @photo = Photo.new
@@ -21,14 +18,12 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @photo = @album.photos.find(params[:id])
   end
 
   def update
-    @photo = @album.photos.find(params[:id])
     if @photo.update_attributes(photo_params)
       flash[:success] = "Photo updated"
-      redirect_to root_path
+      redirect_to @photo
     else
       render 'edit'
     end
@@ -39,14 +34,13 @@ class PhotosController < ApplicationController
     @photo.tags = TagService.new(params[:photo][:tags]).tags
     if @photo.save
       flash[:success] = "Photo created!"
-      redirect_to root_path
+      redirect_to [@user, @album]
     else
-      render 'home_page#index'
+      redirect_to root_path
     end
   end
 
   def destroy
-    @photo = @album.photos.find(params[:id])
     if @photo.destroy
       flash[:success] = "Photo deleted"
     end
@@ -56,14 +50,6 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:image, :description, :user_id, :album_id)
-  end
-
-  def user
-    @user = User.find(params[:user_id])
-  end
-
-  def album
-    @album = @user.albums.find(params[:album_id])
+    params.require(:photo).permit(:image, :description)
   end
 end

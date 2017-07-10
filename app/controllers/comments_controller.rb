@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
-  before_action :user, :album, :photo
-  load_and_authorize_resource
+  load_and_authorize_resource :user
+  load_and_authorize_resource :album, through: :user
+  load_and_authorize_resource :photo, through: :album
+  load_and_authorize_resource through: :photo
 
   def create
-    @comment = @photo.comments.build(comment_params)
-    @comment.user_id = current_user.id
+    @comment.user = current_user
     if @comment.save
       flash[:success] = "Success comment"
       Notifications::NotifyComment.new(@comment).notify
@@ -15,11 +16,9 @@ class CommentsController < ApplicationController
       format.html { redirect_to :back }
       format.js
     end
-
   end
 
   def destroy
-    @comment = @photo.comments.find(params[:id])
     if @comment.destroy
       flash[:success] = "Success deleted"
     else
@@ -33,19 +32,7 @@ class CommentsController < ApplicationController
 
   private
 
-    def comment_params
-      params.require(:comment).permit(:content)
-    end
-
-    def photo
-      @photo = Photo.find(params[:photo_id])
-    end
-
-    def user
-      @user ||= User.find(params[:user_id])
-    end
-
-    def album
-      @album = @user.albums.find(params[:album_id])
-    end
+  def comment_params
+    params.require(:comment).permit(:content)
+  end
 end
