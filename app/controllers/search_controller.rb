@@ -5,7 +5,17 @@ class SearchController < ApplicationController
     else
       @results = Elasticsearch::Model.search((params[:query] ? (params[:query] + "*") : "*"),\
         [Album, Photo, User]).records.to_a
-      render json: @results
     end
+    render json: @results
+  end
+
+  def tag_search
+    if params[:q].nil?
+      @tags = []
+    else
+      @tags = Tag.search(params[:q]).records.all.first(10)
+    end
+    render json: @tags
   end
 end
+

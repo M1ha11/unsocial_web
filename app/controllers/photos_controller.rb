@@ -21,6 +21,7 @@ class PhotosController < ApplicationController
   end
 
   def update
+    @photo.tags = TagService.new(params[:photo][:tags]).tags
     if @photo.update_attributes(photo_params)
       flash[:success] = "Photo updated"
       redirect_to @photo

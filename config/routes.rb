@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :interrelationships, only: [:create, :destroy]
 
   get 'search', to: 'search#search', autocomplete: true
+  get 'tag_search', to: 'search#tag_search', autocomplete: true
 
   mount ActionCable.server => '/cable'
 end

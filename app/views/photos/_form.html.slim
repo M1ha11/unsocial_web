@@ -1,13 +1,18 @@
+- tags = @photo.tags.map { |tag| { id: tag.id, text: tag.content , selected: true } }
 = simple_form_for @photo, url: url, :html => { :class => 'form-horizontal' } do |f|
   .form-inputs
     .field
       = f.label :image do
         = f.file_field :image
         = f.hidden_field :image_cache
-    = f.input :tags, input_html: { multiple: true, data: { width: '100%' }}
+    = f.input :tags, as: :select, input_html: { id: 'tags', multiple: true, data: { tags: tags, width: '100%' } },
+                   collection: [], include_blank: false, include_hidden: false
     = f.input :name
     = f.input :description
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")),
-                      root_path, :class => 'btn btn-default'
+                      user_album_path(@user, @album), :class => 'btn btn-default'
+
+
+
 

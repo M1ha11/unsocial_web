@@ -1,6 +1,9 @@
+- tags = @album.tags.map { |tag| { id: tag.id, text: tag.content , selected: true } }
 = simple_form_for @album, url: url, :html => { :class => 'form-horizontal' } do |f|
   = f.input :title
   = f.input :description
-  = f.input :tags, input_html: { multiple: true, data: { width: '100%' }}
+  = f.input :tags, as: :select, input_html: { id: 'tags', multiple: true, data: { tags: tags, width: '100%' } },
+                 collection: [], include_blank: false, include_hidden: false
   = f.button :submit, :class => 'btn-primary'
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn btn-default'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), user_path(@user),
+                         :class => 'btn btn-default'

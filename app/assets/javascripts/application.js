@@ -17,5 +17,6 @@
 //= require turbolinks
 //= require iziToast
 //= require twitter/typeahead
+//= require select2
 //= require_tree .
 

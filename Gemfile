@@ -17,7 +17,6 @@ gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'devise', '4.3.0'
 gem 'pry', '0.10.4'
-gem "pry-rails", '0.3.6', group:"development"
 gem 'cancancan', '2.0.0'
 gem 'slim', '3.0.8'
 gem 'izitoast', :git => 'https://github.com/DmitryArtyomov/iziToast-rails'
@@ -26,6 +25,7 @@ gem 'elasticsearch-model', '5.0.1'
 gem 'elasticsearch-rails', '5.0.1'
 gem 'active_model_serializers', '0.10.6'
 gem 'twitter-typeahead-rails', '0.11.1'
+gem "select2-rails", '4.0.3'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
@@ -37,6 +37,7 @@ group :development do
   gem 'listen', '3.0.8'
   gem 'spring', '1.7.2'
   gem 'spring-watcher-listen', '2.0.0'
+  gem "pry-rails", '0.3.6'
 end
 
 group :test do
