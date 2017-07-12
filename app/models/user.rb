@@ -25,6 +25,9 @@ class User < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   has_many :albums, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :active_interrelationships, class_name:  "Interrelationship",
@@ -36,8 +39,6 @@ class User < ApplicationRecord
   has_many :following, through: :active_interrelationships, source: :followed
   has_many :followers, through: :passive_interrelationships, source: :follower
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :avatar, AvatarUploader
   validates_integrity_of  :avatar

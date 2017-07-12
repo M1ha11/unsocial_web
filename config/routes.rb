@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  # ActiveAdmin::Devise.config
+  devise_for :users, path: '/', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: 'settings' }
+  ActiveAdmin.routes(self)
+
   root 'home_page#index'
 
-  devise_for :users, path: '/', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: 'settings' }
 
   resources :users, only: [:show] do
     resources :albums, except: [:index] do
