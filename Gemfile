@@ -27,7 +27,7 @@ gem 'active_model_serializers', '0.10.6'
 gem 'twitter-typeahead-rails', '0.11.1'
 gem "select2-rails", '4.0.3'
 gem "responders", '2.4.0'
-
+gem 'activeadmin', '1.0.0'
 
 
 group :development, :test do
