@@ -35,9 +35,9 @@ class PhotosController < ApplicationController
     @photo.tags = TagService.new(params[:photo][:tags]).tags
     if @photo.save
       flash[:success] = "Photo created!"
-      redirect_to [@user, @album]
+      redirect_to [@user, @album, @photo]
     else
-      redirect_to root_path
+      redirect_to [@user, @album]
     end
   end
 
