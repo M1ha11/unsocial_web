@@ -15,36 +15,28 @@ class AlbumsController < ApplicationController
   end
 
   def update
+    @album.update_attributes(album_params)
     @album.tags = TagService.new(params[:album][:tags]).tags
-    if @album.update_attributes(album_params)
-      flash[:success] = "Album updated"
-      redirect_to [@user, @album]
-    else
-      render 'edit'
-    end
+    album_respond
   end
 
   def create
-    @album = @user.albums.create(album_params)
-    @album.tags = TagService.new(params[:album][:tags]).tags
-    if @album.save
-      flash[:success] = "Album created!"
-      redirect_to [@user, @album]
-    else
-      redirect_to @user
-    end
+    @album.tags = TagService.new(params[:album][:tags]).tags if @album.save
+    album_respond
   end
 
   def destroy
-    if @album.destroy
-      flash[:success] = "Album deleted"
-    end
-    redirect_to @user
+    @album.destroy
+    respond_with @album, location: -> { user_path(@user) }
   end
 
   private
 
   def album_params
     params.require(:album).permit(:title, :description)
+  end
+
+  def album_respond
+    respond_with @album, location: -> { user_album_path(@user, @album) }
   end
 end

@@ -26,7 +26,7 @@ gem 'elasticsearch-rails', '5.0.1'
 gem 'active_model_serializers', '0.10.6'
 gem 'twitter-typeahead-rails', '0.11.1'
 gem "select2-rails", '4.0.3'
-gem "responders"
+gem "responders", '2.4.0'
 
 
 

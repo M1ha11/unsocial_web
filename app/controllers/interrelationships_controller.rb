@@ -1,21 +1,20 @@
 class InterrelationshipsController < ApplicationController
+  load_and_authorize_resource
+
   def create
-    @user = User.find(params[:followed_id])
-    current_user.follow(@user)
-    respond_to do |format|
-      format.html { redirect_to @user }
-      format.js
-    end
-    @interrelationship = Interrelationship.where(follower_id: current_user.id).where(followed_id: @user.id).first
+    @interrelationship.save
     Notifications::NotifyFollower.new(@interrelationship).notify
+    respond_with @interrelationship
   end
 
   def destroy
-    @user = Interrelationship.find(params[:id]).followed
-    current_user.unfollow(@user)
-    respond_to do |format|
-      format.html { redirect_to @user }
-      format.js
-    end
+    @interrelationship.destroy
+    respond_with @interrelationship
+  end
+
+  private
+
+  def interrelationship_params
+    params.permit(:followed_id)
   end
 end

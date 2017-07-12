@@ -6,28 +6,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment.user = current_user
-    if @comment.save
-      flash[:success] = "Success comment"
-      Notifications::NotifyComment.new(@comment).notify
-    else
-      flash[:alert] = "Error comment"
-    end
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.js
-    end
+    Notifications::NotifyComment.new(@comment).notify if @comment.save
   end
 
   def destroy
-    if @comment.destroy
-      flash[:success] = "Success deleted"
-    else
-      flash[:alert] = "Error deleting"
-    end
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.js
-    end
+    @comment.destroy
   end
 
   private
