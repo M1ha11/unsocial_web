@@ -8,7 +8,7 @@ set :repo_url, "git@github.com:ormand89/unsocial_web.git"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/my_social_web"
+set :deploy_to, "/home/deploy/my_social_web"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
