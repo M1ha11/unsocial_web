@@ -8,9 +8,9 @@ test:
 staging:
   <<: *default
 production:
-  host: 'search-myelasticservice-7evfpsw7dhdsg6ddl37j5sx5ya.us-east-2.es.amazonaws.com',
-  port: 80,
-  log: true,
+  host: 'search-myelasticservice-7evfpsw7dhdsg6ddl37j5sx5ya.us-east-2.es.amazonaws.com'
+  port: 80
+  log: true
   transport_options:
     request:
       timeout: 5*60
