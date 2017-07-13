@@ -41,6 +41,10 @@ group :development do
   gem 'spring', '1.7.2'
   gem 'spring-watcher-listen', '2.0.0'
   gem "pry-rails", '0.3.6'
+  gem 'capistrano', '~> 3.7', '>= 3.7.1'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rvm'
 end
 
 group :test do
