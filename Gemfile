@@ -28,7 +28,6 @@ gem "select2-rails", '4.0.3'
 gem "responders", '2.4.0'
 gem 'activeadmin', '1.0.0'
 
-
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
   gem 'faker',          '1.7.3'
