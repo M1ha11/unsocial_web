@@ -19,6 +19,7 @@
 #  last_name              :string
 #  adress                 :string
 #  avatar                 :string
+#  role                   :string           default("user"), not null
 #
 
 class User < ApplicationRecord
@@ -39,6 +40,8 @@ class User < ApplicationRecord
   has_many :following, through: :active_interrelationships, source: :followed
   has_many :followers, through: :passive_interrelationships, source: :follower
 
+  has_many :photos, through: :albums, source: :photos
+  has_many :feed_photos, through: :following, source: :photos
 
   mount_uploader :avatar, AvatarUploader
   validates_integrity_of  :avatar

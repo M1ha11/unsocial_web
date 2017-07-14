@@ -6,6 +6,7 @@ class Ability
       if user.persisted?
         alias_action :create, :read, :update, :destroy, to: :crud
 
+        can :manage, :all if user.role == "admin"
         can :crud, User, id: user.id
         can :crud, Album, user_id: user.id
         can :crud, Photo, album: { user_id: user.id }
@@ -13,10 +14,6 @@ class Ability
         can [:create, :destroy], Comment, user_id: user.id
         can [:create, :destroy], Interrelationship, follower_id: user.id
         cannot :create, Interrelationship, followed_id: user.id
-
-        # if user.role == 'admin'
-        #   can [:manage], :all
-        # end
       end
 
         can [:read], User

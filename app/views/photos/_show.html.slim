@@ -8,7 +8,6 @@
       h3.modal-title
         button.close[type="button" data-dismiss="modal"]
           | ×
-        = @photo.name unless @photo.name.nil?
         - if can? :update, @photo
           = link_to t('.edit', :default => t("helpers.links.edit")),
                             edit_user_album_photo_path(@user, @album, @photo), :class => 'btn btn-s btn-default'

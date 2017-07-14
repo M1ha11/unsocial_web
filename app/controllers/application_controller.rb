@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
   skip_before_action :authenticate_user!, :only => [:index]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def access_denied(param)
+    flash[:danger] = "You cannot access this page"
+    redirect_to :root
+  end
+
   protected
 
   def configure_permitted_parameters

@@ -7,7 +7,6 @@
         = f.hidden_field :image_cache
     = f.input :tags, as: :select, input_html: { id: 'tags', multiple: true, data: { tags: tags, width: '100%' } },
                    collection: [], include_blank: false, include_hidden: false
-    = f.input :name
     = f.input :description
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")),
