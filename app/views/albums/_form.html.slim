@@ -1,4 +1,4 @@
-- tags = @album.tags.map { |tag| { id: tag.id, text: tag.content , selected: true } }
+- tags = @album.tags.map { |tag| { id: tag.content, text: tag.content , selected: true } }
 = simple_form_for @album, url: url, :html => { :class => 'form-horizontal' } do |f|
   = f.input :title
   = f.input :description

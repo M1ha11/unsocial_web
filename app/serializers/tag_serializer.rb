@@ -10,4 +10,8 @@
 
 class TagSerializer < ApplicationSerializer
   attributes :id, :content
+
+  def id
+    object.content
+  end
 end

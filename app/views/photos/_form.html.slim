@@ -1,4 +1,4 @@
-- tags = @photo.tags.map { |tag| { id: tag.id, text: tag.content , selected: true } }
+- tags = @photo.tags.map { |tag| { id: tag.content, text: tag.content , selected: true } }
 = simple_form_for @photo, url: url, :html => { :class => 'form-horizontal' } do |f|
   .form-inputs
     .field
