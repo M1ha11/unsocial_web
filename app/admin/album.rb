@@ -1,15 +1,33 @@
 ActiveAdmin.register Album do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :title, :description
+  includes :user, :tags
 
+  index do
+    selectable_column
+    id_column
+    column :user
+    column :title
+    column :description
+    column "Tags" do |album|
+      album.tags.map do |tag|
+        link_to tag.content, admin_tag_path(tag.id)
+      end.join(', ').html_safe
+    end
+    column :created_at
+    column :updated_at
+    actions
+  end
+
+  filter :user
+  filter :title
+  filter :description
+  filter :tags
+
+  form do |f|
+    f.inputs "Album" do
+      f.input :title
+      f.input :description, input_html: { rows: 3 }
+    end
+    f.actions
+  end
 end

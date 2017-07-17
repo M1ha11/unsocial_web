@@ -34,4 +34,8 @@ class Tag < ApplicationRecord
       indexes :content
     end
   end
+
+  def display_name
+    content
+  end
 end

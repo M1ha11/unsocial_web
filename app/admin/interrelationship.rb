@@ -1,15 +1,23 @@
 ActiveAdmin.register Interrelationship do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :follower_id, :followed_id
+  includes :follower, :followed
 
+  index do
+    selectable_column
+    id_column
+    column :follower
+    column :followed
+    actions
+  end
+
+  filter :follower
+  filter :followed
+
+  form do |f|
+    f.inputs "Interrelationship Details" do
+      f.input :follower
+      f.input :followed
+    end
+    f.actions
+  end
 end

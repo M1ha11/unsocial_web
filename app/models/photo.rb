@@ -37,4 +37,8 @@ class Photo < ApplicationRecord
   def as_indexed_json(_ = nil)
     as_json(include: { tags: { only: :content } }, except:  %i[id _id])
   end
+
+  def display_name
+    "photo ##{id}"
+  end
 end

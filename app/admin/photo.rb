@@ -1,15 +1,33 @@
 ActiveAdmin.register Photo do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :image, :description, :album_id
+  includes :tags, :album, :taggings
 
+  index do
+    selectable_column
+    id_column
+    column "Image" do |photo|
+      photo
+    end
+    column :album
+    column :description
+    column "Tags" do |photo|
+      photo.tags.map do |tag|
+        link_to tag.content, admin_tag_path(tag.id)
+      end.join(', ').html_safe
+    end
+    actions
+  end
+
+  filter :description
+  filter :tags
+  filter :album
+
+  form do |f|
+    f.inputs "Photo" do
+      f.input :image
+      f.input :description, input_html: { rows: 3 }
+    end
+    f.actions
+  end
 end
+

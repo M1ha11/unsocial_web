@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @comments = @photo.comments
+    @comments = @photo.comments.includes(:user)
     @tags = @photo.tags
   end
 

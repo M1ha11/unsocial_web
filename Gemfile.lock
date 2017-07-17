@@ -4,6 +4,17 @@ GIT
   specs:
     izitoast (1.1.2.b)
 
+GIT
+  remote: https://github.com/mbv/elasticsearch-rails.git
+  revision: 9d8df78e63092c8ff5ff5ca997fd3b3009aac4ff
+  branch: 5.x
+  specs:
+    elasticsearch-model (5.0.1)
+      activesupport (> 3)
+      elasticsearch (~> 5)
+      hashie
+    elasticsearch-rails (5.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -131,11 +142,6 @@ GEM
       elasticsearch-transport (= 5.0.4)
     elasticsearch-api (5.0.4)
       multi_json
-    elasticsearch-model (5.0.1)
-      activesupport (> 3)
-      elasticsearch (~> 5)
-      hashie
-    elasticsearch-rails (5.0.1)
     elasticsearch-transport (5.0.4)
       faraday
       multi_json
@@ -376,7 +382,7 @@ DEPENDENCIES
   carrierwave (= 1.1.0)
   coffee-rails (= 4.2.1)
   devise (= 4.3.0)
-  elasticsearch-model (= 5.0.1)
+  elasticsearch-model!
   elasticsearch-rails (= 5.0.1)
   faker (= 1.7.3)
   guard (= 2.13.0)
