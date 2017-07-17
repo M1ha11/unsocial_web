@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/mbv/elasticsearch-rails.git
-  revision: 9d8df78e63092c8ff5ff5ca997fd3b3009aac4ff
+  revision: 98dd1e8554a60b963c35f856768bbc42e5785f60
   branch: 5.x
   specs:
     elasticsearch-model (5.0.1)
@@ -383,7 +383,7 @@ DEPENDENCIES
   coffee-rails (= 4.2.1)
   devise (= 4.3.0)
   elasticsearch-model!
-  elasticsearch-rails (= 5.0.1)
+  elasticsearch-rails!
   faker (= 1.7.3)
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
