@@ -25,6 +25,7 @@ gem "select2-rails", '4.0.3'
 gem "responders", '2.4.0'
 gem 'activeadmin', '1.0.0'
 gem 'redis', '3.3.3'
+gem 'figaro', '1.1.1'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri

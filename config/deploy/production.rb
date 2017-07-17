@@ -31,7 +31,7 @@ server '52.14.127.196', user: 'deploy', roles: %w{app db web}
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-
+append :linked_files, "config/database.yml", "config/secrets.yml", "config/application.yml"
 
 # Custom SSH Options
 # ==================
