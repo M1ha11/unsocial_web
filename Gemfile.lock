@@ -387,7 +387,7 @@ DEPENDENCIES
   elasticsearch-model!
   elasticsearch-rails!
   faker (= 1.7.3)
-  figaro
+  figaro (= 1.1.1)
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
   izitoast!
