@@ -32,6 +32,14 @@ set :deploy_to, "/home/deploy/my_social_web"
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
 
+set :shoryuken_default_hooks,  true
+
+set :shoryuken_pid,            -> { File.join(shared_path, 'tmp', 'pids', 'shoryuken.pid') }
+set :shoryuken_env,            -> { fetch(:rack_env, fetch(:rails_env, fetch(:stage))) }
+set :shoryuken_log,            -> { File.join(shared_path, 'log', 'shoryuken.log') }
+set :shoryuken_options,        -> { ['--rails'] }
+set :shoryuken_role,           :app
+
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 append :linked_files, "config/database.yml", "config/secrets.yml", "config/application.yml"
