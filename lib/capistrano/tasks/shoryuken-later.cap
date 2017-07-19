@@ -1,5 +1,5 @@
 namespace :'shoryuken-later' do
-  
+
   desc 'Start the shoryuken-later process'
   task :start do
     on roles(:app) do
