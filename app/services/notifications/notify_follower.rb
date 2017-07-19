@@ -6,6 +6,7 @@ class Notifications::NotifyFollower < Notifications::AbstractNotification
 
   def notify
     return if reciever == transmitter
+    MailJob.perform_later(transmitter, reciever)
     ActivityChannel.broadcast_to(reciever, {
         name: transmitter.first_name + " " + transmitter.last_name,
         avatar: transmitter.avatar.url,

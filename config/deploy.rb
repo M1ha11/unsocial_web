@@ -34,5 +34,5 @@ set :deploy_to, "/home/deploy/my_social_web"
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-append :linked_files, "config/database.yml", "config/secrets.yml"
+append :linked_files, "config/database.yml", "config/secrets.yml", "config/application.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
