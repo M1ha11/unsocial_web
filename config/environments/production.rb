@@ -76,7 +76,7 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
-
+  config.action_mailer.deliver_later_queue_name = "queue_my_social"
   config.active_job.queue_adapter = :shoryuken
 
   config.active_record.dump_schema_after_migration = false

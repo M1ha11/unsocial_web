@@ -58,7 +58,7 @@ Rails.application.configure do
     Bullet.add_footer = true
   end
 
-  # config.active_job.queue_adapter = :async
+  # config.active_job.queue_adapter = :shoryuken
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
