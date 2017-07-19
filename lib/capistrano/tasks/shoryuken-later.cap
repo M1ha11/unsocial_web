@@ -1,0 +1,40 @@
+namespace :'shoryuken-later' do
+  
+  desc 'Start the shoryuken-later process'
+  task :start do
+    on roles(:app) do
+      within release_path do
+        pid_file = File.join(shared_path, 'tmp/pids/shoryuken-later.pid')
+        unless test('[', '-f', pid_file, ']') && test(:kill, '-0', '$(', :cat, pid_file, ')')
+          args = ['--rails --daemon']
+          args.push "--pidfile '#{pid_file}'"
+          logfile = fetch(:shoryuken_log) and args.push "--logfile '#{logfile}'"
+          config = fetch(:shoryuken_config) and args.push "--config '#{config}'"
+          reqs = Array(fetch(:shoryuken_requires)) and reqs.each{|req| args.push "--require #{req}" }
+          with rails_env: fetch(:shoryuken_env) do
+            execute :bundle, :exec, 'shoryuken-later', args.compact.join(' ')
+          end
+        end
+      end
+    end
+  end
+
+  desc 'Stop the shoryuken-later process'
+  task :stop do
+    on roles(:app) do
+      within release_path do
+        pid_file = File.join(shared_path, 'tmp/pids/shoryuken-later.pid')
+        execute :kill, '$(', :cat, pid_file, ')', '||', 'true' if test('[', '-f', pid_file, ']')
+      end
+    end
+  end
+
+  desc 'Restart shoryuken-later'
+  task :restart do
+    invoke 'shoryuken-later:stop'
+    invoke 'shoryuken-later:start'
+  end
+
+  before 'shoryuken:stop', 'shoryuken-later:stop'
+  after 'shoryuken:start', 'shoryuken-later:start'
+end

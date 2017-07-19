@@ -37,6 +37,7 @@ set :shoryuken_default_hooks,  true
 set :shoryuken_pid,            -> { File.join(shared_path, 'tmp', 'pids', 'shoryuken.pid') }
 set :shoryuken_env,            -> { fetch(:rack_env, fetch(:rails_env, fetch(:stage))) }
 set :shoryuken_log,            -> { File.join(shared_path, 'log', 'shoryuken.log') }
+set :shoryuken_config,         -> { nil }
 set :shoryuken_options,        -> { ['--rails'] }
 set :shoryuken_role,           :app
 
