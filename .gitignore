@@ -13,7 +13,7 @@
 !/log/.keep
 !/tmp/.keep
 /public/uploads/*
-config/deploy/*
+/config/deploy/*
 
 # Ignore Byebug command history file.
 .byebug_history
