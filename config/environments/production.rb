@@ -53,7 +53,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  config.active_job.queue_adapter     = :shoryuken
+  config.active_job.queue_adapter     = :async
   # config.active_job.queue_name_prefix = "sample_app_#{Rails.env}"
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -76,9 +76,7 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.action_mailer.deliver_later_queue_name = "queue_my_social"
-  config.active_job.queue_adapter = :shoryuken
-
+  # config.action_mailer.deliver_later_queue_name = "queue_my_social"
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.raise_delivery_errors = false

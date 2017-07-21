@@ -26,7 +26,7 @@ gem "responders", '2.4.0'
 gem 'activeadmin', '1.0.0'
 gem 'redis', '3.3.3'
 gem 'figaro', '1.1.1'
-gem 'shoryuken', '3.1.4'
+# gem 'shoryuken', '3.1.4'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
@@ -47,7 +47,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rvm'
-  gem 'capistrano-shoryuken'
+  # gem 'capistrano-shoryuken'
 end
 
 group :test do
