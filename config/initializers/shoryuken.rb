@@ -17,9 +17,9 @@
 # end
 
 # Shoryuken.active_job_queue_name_prefixing = true
-Shoryuken.options[:queues] = [
-  ENV['queue_url']
-]
+# Shoryuken.options[:queues] = [
+#   ENV['queue_url']
+# ]
 
 # Shoryuken.configure_server do |config|
 #   config.aws = {
