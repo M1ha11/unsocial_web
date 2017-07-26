@@ -1,7 +1,6 @@
 $gray-medium-light: #eaeaea
 
-body
-  padding-top: 60px
+/* signUp */
 
 .center
   text-align: center
@@ -31,19 +30,18 @@ p
   line-height: 1.7em
 
 /* header */
-
 #logo
-  float: left
-  margin-right: 10px
-  font-size: 1.7em
+  font-size: 1.5em
   color: white
   text-transform: uppercase
   letter-spacing: -1px
-  padding-top: 9px
   font-weight: bold
   &:hover
     color: white
     text-decoration: none
+
+.search-field
+  max-width: 300px
 
 /* footer */
 
@@ -53,53 +51,26 @@ footer
   border-top: 1px solid #eaeaea
   color: $gray-light
 
-/* album */
-
-.album_container
-  width: 200px
-  height: 200px
+.photo-border
   img
-    width: 100%
-    height: auto
-    border-radius: 10px
-    position: relative
-    left: 30px
+    border-radius: 15px
 
-.album_description
-  p
-    text-align: center
+/* forms */
 
-/* photo */
-
-.photo_container
-  width: 400px
-  height: 500px
-  img
-    width: 100%
-    height: auto
-    border-radius: 10px
-    position: relative
-    left: 30px
-
-.photo_description
-  p
-    text-align: center
+.flex-buttons
+  display: flex
+  justify-content: space-between
 
 /* feed image */
 
-.feed_container
-  width: 600px
-  height: 625px
-  img
-    width: 100%
-    height: auto
-    border-radius: 10px
-    position: relative
-
-input, textarea, select
-  border: 1px solid #bbb
-  width: 100%
-  margin-bottom: 15px
+// .feed_container
+//   width: 600px
+//   height: 625px
+//   img
+//     width: 100%
+//     height: auto
+//     border-radius: 10px
+//     position: relative
 
 input
   height: auto !important

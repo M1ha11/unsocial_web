@@ -5,7 +5,7 @@ html[lang="en"]
     = render 'layouts/header'
     .container
       .row
-        = render 'layouts/error'
+        = bootstrap_flash
         = yield
       = render 'layouts/footer'
       = debug(params) if Rails.env.development?

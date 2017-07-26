@@ -1,16 +1,25 @@
 - tags = @photo.tags.map { |tag| { id: tag.content, text: tag.content , selected: true } }
-= simple_form_for @photo, url: url, :html => { :class => 'form-horizontal' } do |f|
-  .form-inputs
-    .field
-      = f.label :image do
-        = f.file_field :image
-        = f.hidden_field :image_cache
-    = f.input :tags, as: :select, input_html: { id: 'tags', multiple: true, data: { tags: tags, width: '100%' } },
-                   collection: [], include_blank: false, include_hidden: false
-    = f.input :description
-    = f.button :submit, :class => 'btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")),
-                      user_album_path(@user, @album), :class => 'btn btn-default'
+.col-md-6.col-md-offset-3
+  = simple_form_for @photo, url: url do |f|
+    = f.error_notification
+    .form-inputs
+      .center
+        - if @photo.image.preview.url.present?
+          = image_tag(@photo.image.preview.url)
+      .field
+        = f.label :image do
+          = f.error :image
+          = f.file_field :image
+          = f.hidden_field :image_cache
+      = f.input :tags, as: :select, input_html: { id: 'tags', multiple: true,
+                                                  data: { tags: tags, width: '100%' } },
+                                                  collection: [], include_blank: false,
+                                                  include_hidden: false
+      = f.input :description
+    .form-actions.flex-buttons
+      = link_to "Back", :back, class: 'btn btn-default'
+      = f.button :submit, class: 'btn btn-success'
+
 
 
 

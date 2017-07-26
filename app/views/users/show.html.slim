@@ -1,19 +1,22 @@
 - model_class = User
-.row
-  .col-md-3
-    dd
-      img src = @user.avatar
-    dd
-      = @user.first_name + " " + @user.last_name
-      - if can?(:create, Interrelationship.new(follower: current_user, followed: @user))
-        = render 'follow_form'
-    p
-      = @user.followers.count
-      |  followers
-    p
-      = @user.following.count
-      |  following
-    - if can? :create, @user, @album
-      = link_to t('.new', :default => t("helpers.links.new")), new_user_album_path(@user), :class => 'btn btn-primary'
-  .col-md-9
-    = render @user.albums
+.container
+  .row
+    .col-md-4.col-lg-3.col-sm-6
+      .center
+        .avatar.photo-border
+          = image_tag(@user.avatar)
+        = @user.display_name
+        - if can?(:create, Interrelationship.new(follower: current_user, followed: @user))
+          = render 'follow_form'
+        div
+          = @user.followers.count
+          |  followers
+        div
+          = @user.following.count
+          |  following
+    .col-md-8.col-lg-9.col-sm-6
+      .center
+        - if can? :create, @user, @album
+          = link_to "New Album", new_user_album_path(@user), class: 'btn btn-primary'
+      = render @user.albums
+

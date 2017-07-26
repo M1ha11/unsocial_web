@@ -6,11 +6,12 @@
   .modal-content
     .modal-header
       h3.modal-title
-        button.close[type="button" data-dismiss="modal"]
-          | ×
         - if can? :update, @photo
-          = link_to t('.edit', :default => t("helpers.links.edit")),
-                            edit_user_album_photo_path(@user, @album, @photo), :class => 'btn btn-s btn-default'
+          = link_to "Edit Photo", edit_user_album_photo_path(@user, @album, @photo), class: 'btn btn-default'
+        - if can? :destroy, @album, @photo
+          = link_to "Delete Photo", user_album_photo_path(@user, @album, @photo), method: :delete,
+                  data: { confirm: 'Are you sure?' },
+                  class: 'btn btn-danger'
       .modal-body
         .row
           .col-md-9

@@ -1,10 +1,10 @@
 - model_class = Album
-.col-md-4.album_description
-  h2
+.col-md-4.col-sm-6.col-lg-4
+  h2.center
     = album.title
-  .album_container
-    a href = user_album_path(@user, album)
+  .photo-border
+    =link_to user_album_path(@user, album)
       - if album.photos.first
-        = image_tag album.photos.first.image.thumb
+        = image_tag album.photos.first.image.thumb, class: 'img-responsive center-block'
       - else
-        = image_tag "blank-album.jpg"
+        = image_tag "blank-album.jpg", class: 'img-responsive center-block'

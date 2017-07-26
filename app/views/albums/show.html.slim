@@ -1,19 +1,17 @@
 - model_class = Album
-.page-header
-  - if can? :destroy, @album
-    = link_to t('.destroy', :default => t("helpers.links.destroy")), user_album_path(@user, @album), :method => :delete,
-            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-            :class => 'btn btn-s btn-danger'
+.center
+  - if can? :create, @album, @photo
+    = link_to "New Photo", new_user_album_photo_path(@user, @album), class: 'btn btn-primary'
   - if can? :update, @album
-    = link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_album_path(@user, @album), :class => 'btn btn-s btn-default'
+    = link_to "Edit Album", edit_user_album_path(@user, @album), class: 'btn btn-default'
+  - if can? :destroy, @album
+    = link_to "Delete Album", user_album_path(@user, @album), method: :delete,
+            data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
+            class: 'btn btn-danger'
   p
     = @album.description
+  p
     = render @tags if @tags
-- if can? :create, @album, @photo
-  = link_to t('.new', :default => t("helpers.links.new")),
-                  new_user_album_photo_path(@user, @album), :class => 'btn btn-primary'
-dl.dl-horizontal
-  ol.photo
-    = render @photos
+  = render @photos
 #modal-place
+
