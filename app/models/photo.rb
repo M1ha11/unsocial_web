@@ -43,6 +43,11 @@ class Photo < ApplicationRecord
     end
   end
 
+  def tags=(tags)
+    super
+    __elasticsearch__.index_document
+  end
+
   def as_indexed_json(_ = nil)
     as_json(include: { tags: { only: :content } }, except:  %i[id _id])
   end

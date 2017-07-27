@@ -31,6 +31,11 @@ class Album < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 140 }
 
+  def tags=(tags)
+    super
+    __elasticsearch__.index_document
+  end
+
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
       indexes :title
