@@ -3,7 +3,7 @@
   h2.center
     = album.title
   .photo-border
-    =link_to user_album_path(@user, album)
+    = link_to user_album_path(@user, album)
       - if album.photos.first
         = image_tag album.photos.first.image.thumb, class: 'img-responsive center-block'
       - else

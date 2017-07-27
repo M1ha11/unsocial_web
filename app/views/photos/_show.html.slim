@@ -5,23 +5,24 @@
 .modal-dialog.modal-lg
   .modal-content
     .modal-header
-      h3.modal-title
+      h3.modal-title.flex-buttons
         - if can? :update, @photo
           = link_to "Edit Photo", edit_user_album_photo_path(@user, @album, @photo), class: 'btn btn-default'
+        = @photo.description
         - if can? :destroy, @album, @photo
           = link_to "Delete Photo", user_album_photo_path(@user, @album, @photo), method: :delete,
                   data: { confirm: 'Are you sure?' },
                   class: 'btn btn-danger'
-      .modal-body
-        .row
-          .col-md-9
-              = image_tag @photo.image, class: 'img-responsive center-block'
-          .col-md-3
-            .comments
-              = render @comments
-            = render 'comments/form'
-      .modal-footer
-        = @photo.description
+    .modal-body
+      .row
+        .col-md-9.photo-border
+          = image_tag @photo.image, class: 'img-responsive center-block'
+        .col-md-3.comments
+          = render @comments
+
+      = render 'comments/form'
+    .modal-footer
+      h4.col-md-9.col-offset-3.flex-comments
         = render @tags if @tags
-        button.btn.btn-danger[type="button" data-dismiss="modal"]
-          | Close
+      button.btn.btn-danger[type="button" data-dismiss="modal"]
+        | Close

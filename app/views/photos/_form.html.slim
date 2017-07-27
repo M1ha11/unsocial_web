@@ -3,9 +3,9 @@
   = simple_form_for @photo, url: url do |f|
     = f.error_notification
     .form-inputs
-      .center
-        - if @photo.image.preview.url.present?
-          = image_tag(@photo.image.preview.url)
+      .center.photo-border
+        - if @photo.image.thumb.url.present?
+          = image_tag @photo.image.thumb, class: 'img-responsive center-block'
       .field
         = f.label :image do
           = f.error :image

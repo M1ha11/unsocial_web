@@ -1,15 +1,23 @@
 - comment ||= @comment
 .comment(id="comment#{comment.id}")
-  p
-    = link_to comment.user.first_name, comment.user
-  p
-    = comment.content
-  p
+  .container-fluid
+    .row.flex-comments
+      .col-md-3
+        = link_to user_path(comment.user)
+          - if comment.user.avatar.url.present?
+            = image_tag comment.user.avatar, class: 'photo-preview'
+      .col-md-6
+        = comment.user.display_name
+      .col-md-3
+        - if can? :destroy, comment
+          = link_to user_album_photo_comment_path(@user, @album, @photo, comment),
+                    method: :delete, data: { confirm: 'Are you sure?' },
+                    :class => 'btn btn-xs btn-danger',
+                    remote: true do
+              span.glyphicon.glyphicon-minus aria-hidden="true"
+    .row
+      .col-md-12
+        = comment.content
+  .center
     = time_ago_in_words(comment.created_at)
     |  ago.
-    - if can? :destroy, comment
-      = link_to t('.destroy', :default => t("helpers.links.destroy")), user_album_photo_comment_path(@user, @album, @photo, comment),
-                :method => :delete, data: { confirm: 'Are you sure?' },
-                :class => 'btn btn-xs btn-danger',
-                remote: true
-
