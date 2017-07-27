@@ -1,23 +1,23 @@
 - comment ||= @comment
 .comment(id="comment#{comment.id}")
-  .container-fluid
-    .row.flex-comments
-      .col-md-3
-        = link_to user_path(comment.user)
-          - if comment.user.avatar.url.present?
-            = image_tag comment.user.avatar, class: 'photo-preview'
-      .col-md-6
-        = comment.user.display_name
-      .col-md-3
-        - if can? :destroy, comment
-          = link_to user_album_photo_comment_path(@user, @album, @photo, comment),
-                    method: :delete, data: { confirm: 'Are you sure?' },
-                    :class => 'btn btn-xs btn-danger',
-                    remote: true do
-              span.glyphicon.glyphicon-minus aria-hidden="true"
-    .row
-      .col-md-12
-        = comment.content
-  .center
+  .comment-container
+    .container-fluid
+      .row.flex-comments
+        div
+          = link_to user_path(comment.user)
+            - if comment.user.avatar.url.present?
+              = image_tag comment.user.avatar, class: 'photo-preview'
+        div
+          = comment.user.display_name
+        div
+          - if can? :destroy, comment
+            = link_to user_album_photo_comment_path(@user, @album, @photo, comment),
+                      method: :delete, data: { confirm: 'Are you sure?' },
+                      :class => 'btn btn-xs btn-danger',
+                      remote: true do
+                span.glyphicon.glyphicon-minus aria-hidden="true"
+      .row
+        .col-md-12
+          = comment.content
     = time_ago_in_words(comment.created_at)
     |  ago.

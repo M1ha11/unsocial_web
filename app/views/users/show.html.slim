@@ -18,5 +18,6 @@
       .center
         - if can? :create, @user, @album
           = link_to "New Album", new_user_album_path(@user), class: 'btn btn-primary'
-      = render @user.albums
+      .row
+        = render @user.albums
 

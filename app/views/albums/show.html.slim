@@ -1,17 +1,24 @@
 - model_class = Album
-.center
-  - if can? :create, @album, @photo
-    = link_to "New Photo", new_user_album_photo_path(@user, @album), class: 'btn btn-primary'
-  - if can? :update, @album
-    = link_to "Edit Album", edit_user_album_path(@user, @album), class: 'btn btn-default'
-  - if can? :destroy, @album
-    = link_to "Delete Album", user_album_path(@user, @album), method: :delete,
-            data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
-            class: 'btn btn-danger'
-  p
-    = @album.description
-  p
-    = render @tags if @tags
-  = render @photos
+.container
+  .flex-buttons
+    div
+      - if can? :create, @album, @photo
+        = link_to "New Photo", new_user_album_photo_path(@user, @album), class: 'btn btn-primary'
+    div
+      - if can? :update, @album
+        = link_to "Edit Album", edit_user_album_path(@user, @album), class: 'btn btn-default'
+    div
+      - if can? :destroy, @album
+        = link_to "Delete Album", user_album_path(@user, @album), method: :delete,
+              data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
+              class: 'btn btn-danger'
+  .center
+    h3
+      = @album.title
+    h4
+      = @album.description
+    h4
+      = render @tags if @tags
+    = render @photos
 #modal-place
 

@@ -1,4 +1,3 @@
-- model_class = Album
 .col-md-4.col-sm-6.col-lg-4
   h2.center
     = album.title
@@ -8,3 +7,5 @@
         = image_tag album.photos.first.image.thumb, class: 'img-responsive center-block'
       - else
         = image_tag "blank-album.jpg", class: 'img-responsive center-block'
+
+

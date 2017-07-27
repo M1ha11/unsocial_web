@@ -6,14 +6,14 @@
         = image_tag photo.image.thumb, class: 'img-responsive center-block'
     .flex-feed
       div
-        |User 
+        |User: 
         = link_to user_path(photo.album.user)
           - if photo.album.user.avatar.url.present?
             = image_tag photo.album.user.avatar, class: 'photo-preview'
         |   
         = link_to "#{photo.album.user.display_name}", photo.album.user
       div
-        |Album 
+        |Album: 
         = link_to "#{photo.album.title}", user_album_path(photo.album.user, photo.album)
 
 
