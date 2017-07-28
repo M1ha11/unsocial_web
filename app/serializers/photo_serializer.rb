@@ -20,7 +20,7 @@
 #
 
 class PhotoSerializer < ApplicationSerializer
-  attributes :object_type, :tags, :image
+  attributes :object_type, :image, :url
 
   def tags
     object.tags.map { |tag| tag.content }
@@ -28,5 +28,9 @@ class PhotoSerializer < ApplicationSerializer
 
   def image
     object.image.thumb.url
+  end
+
+  def url
+    user_album_photo_path(object.album.user, object.album, object)
   end
 end

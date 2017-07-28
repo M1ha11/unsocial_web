@@ -15,8 +15,43 @@ $(document).on 'turbolinks:load', ->
       ].join('\n')
       suggestion: (result) ->
         if result.object_type == 'Album'
-          '<p><strong>' + result.object_type + '</strong> – ' + result.title + '</p>'
+          """
+          <a href= "#{result.url}" >
+            <div class="row flex-feed">
+              <div class="col-xs-3">
+                #{result.object_type}
+              </div>
+              <div class="col-xs-9">
+                #{result.title} at #{result.author}
+              </div>
+            </div>
+          </a>
+          """
         else if result.object_type == 'User'
-          '<p><strong>' + result.object_type + '</strong> – ' + result.full_name + '</p>'
+          if !result.avatar
+            result.avatar = '/avatar_empty.png'
+          """
+          <a href= "#{result.url}" >
+            <div class="row flex-feed">
+              <div class="col-xs-3">
+                <img src="#{result.avatar}", class="photo-preview">
+              </div>
+              <div class="col-xs-9">
+                #{result.author}
+              </div>
+            </div>
+          </a>
+          """
         else
-          '<p><strong>' + result.object_type + '</strong> – ' + result.description + '</p>'
+          """
+          <a href= "#{result.url}" >
+            <div class="row flex-feed">
+              <div class="col-xs-3">
+                <img src="#{result.image}", class="photo-preview">
+              </div>
+              <div class="col-xs-9">
+                #{result.object_type}
+              </div>
+            </div>
+          </a>
+          """

@@ -33,13 +33,17 @@
 #
 
 class UserSerializer < ApplicationSerializer
-  attributes :object_type, :full_name, :avatar
+  attributes :object_type, :author, :avatar, :url
 
   def avatar
     object.avatar.url
   end
 
-  def full_name
+  def author
     object.first_name + " " + object.last_name
+  end
+
+  def url
+    user_path(object)
   end
 end

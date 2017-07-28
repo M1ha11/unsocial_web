@@ -20,10 +20,14 @@
 #
 
 class AlbumSerializer < ApplicationSerializer
-  attributes :object_type, :title, :description, :author
+  attributes :object_type, :url, :title, :author
 
   def author
     user = object.user
     user.first_name + " " + user.last_name
+  end
+
+  def url
+    user_album_path(object.user, object)
   end
 end
