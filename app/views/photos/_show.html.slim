@@ -10,13 +10,14 @@
                   data: { confirm: 'Are you sure?' },
                   class: 'btn btn-danger'
     .modal-body
-      .row.flex-modal-body
+      .row
         .col-md-9.photo-border
           = image_tag @photo.image, class: 'img-responsive center-block'
-        .col-md-3.comments.ScrollStyle
-          = render @comments
-      .row
-        = render 'comments/form'
+        .col-md-3
+          .comments-block
+            .comments.ScrollStyle
+              = render @comments
+            = render 'comments/form'
     .modal-footer
       h4.flex-modal-footer
         = render @tags if @tags

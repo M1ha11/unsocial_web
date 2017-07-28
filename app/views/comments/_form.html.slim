@@ -1,4 +1,5 @@
-= simple_form_for :comment, url: user_album_photo_comments_path(@user, @album, @photo), remote: true do |f|
-  .flex-comment-form
-    = f.text_area :content, placeholder: "Compose new micropost..."
-    = f.submit "Post", class: "btn btn-primary"
+div
+  = simple_form_for :comment, url: user_album_photo_comments_path(@user, @album, @photo), remote: true do |f|
+    .input-group
+      = f.input :content, placeholder: "Compose new comment", class: "form-control", required: true, label: false, maxlength: 140
+      = f.submit "Post", class: "btn btn-primary"
