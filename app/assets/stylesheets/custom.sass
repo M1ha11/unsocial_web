@@ -67,6 +67,8 @@ p
   max-height: 40px
   border-radius: 100%
 
+.modal-body
+  background-color: #eaeaea
 /* footer */
 
 footer
@@ -80,6 +82,15 @@ footer
     border-radius: 20px
     padding-top: 10px
     padding-bottom: 10px
+
+.avatar-border
+  img
+    border-radius: 50%
+    padding-top: 10px
+    padding-bottom: 10px
+    @extend .img-responsive
+    @extend .center-block
+
 /* forms */
 
 .flex-buttons
@@ -99,7 +110,10 @@ footer
   justify-content: space-around
   align-items: center
 
-
+// .flex-modal-body
+//   display: flex
+//   align-items: stretch
+//   justify-content: center
 
 .flex-comment-form
   display: flex
@@ -202,3 +216,16 @@ span.twitter-typeahead
     -webkit-box-shadow: none
     border-color: #cccccc
 
+.DivToScroll
+  border: 1px solid #DDDDDD
+  border-radius: 4px 0 4px 0
+  color: #3B3C3E
+  font-size: 12px
+  font-weight: bold
+  left: -1px
+  padding: 10px 7px 5px
+
+.ScrollStyle
+  max-height: 300px
+  overflow-y: auto
+  overflow-x:hidden

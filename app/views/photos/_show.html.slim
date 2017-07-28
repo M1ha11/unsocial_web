@@ -1,6 +1,3 @@
-|  <div class="modal fade" id="modal-
-=@photo.id
-| ">
 .modal-dialog.modal-lg
   .modal-content
     .modal-header
@@ -13,10 +10,10 @@
                   data: { confirm: 'Are you sure?' },
                   class: 'btn btn-danger'
     .modal-body
-      .row
+      .row.flex-modal-body
         .col-md-9.photo-border
           = image_tag @photo.image, class: 'img-responsive center-block'
-        .col-md-3.comments
+        .col-md-3.comments.ScrollStyle
           = render @comments
       .row
         = render 'comments/form'
