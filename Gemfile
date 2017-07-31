@@ -30,13 +30,13 @@ gem 'figaro', '1.1.1'
 
 group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
-  gem 'faker',          '1.7.3'
   gem 'pry', '0.10.4'
   gem 'puma', '3.4.0'
   gem 'pry-rails', '0.3.6'
   gem 'bullet', '5.5.1'
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'rspec-rails', '3.6.0'
+  gem 'factory_girl_rails', '4.8.0'
+  gem 'faker', '1.8.4'
 end
 
 group :development do
@@ -48,13 +48,14 @@ group :development do
   gem 'capistrano', '~> 3.7', '>= 3.7.1'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rvm'
+  gem 'capistrano-rvm', '0.1.2'
   # gem 'capistrano-shoryuken'
 end
 
 group :test do
   gem 'rails-controller-testing', '0.1.1'
-  gem 'simplecov'
+  gem 'simplecov', '0.14.1'
+  gem 'database_cleaner', '1.6.1'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
