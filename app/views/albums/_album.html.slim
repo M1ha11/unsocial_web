@@ -1,11 +1,13 @@
-.col-md-4.col-sm-6.col-lg-4
+.col-md-4.col-sm-6.col-lg-4.col-xs-12
   h2.center
     = album.title
-  .photo-border
+  div
     = link_to user_album_path(@user, album)
-      - if album.photos.first
-        = image_tag album.photos.first.image.thumb, class: 'img-responsive center-block'
-      - else
-        = image_tag "blank-album.jpg", class: 'img-responsive center-block'
-
+      .album-collage
+        - urls = album.photos.first(4).map { |photo| photo.image.thumb.url }
+        - urls.push('/blank_photo.png') while urls.size < 4
+        - urls.each do |url|
+          .col-md-6.col-sm-6.col-lg-6.col-xs-6
+            .row
+              .album-preview-item style="background-image: url(#{url})"
 

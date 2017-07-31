@@ -35,6 +35,8 @@ group :development, :test do
   gem 'puma', '3.4.0'
   gem 'pry-rails', '0.3.6'
   gem 'bullet', '5.5.1'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -52,9 +54,7 @@ end
 
 group :test do
   gem 'rails-controller-testing', '0.1.1'
-  gem 'minitest-reporters',       '1.1.9'
-  gem 'guard',                    '2.13.0'
-  gem 'guard-minitest',           '2.4.4'
+  gem 'simplecov'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

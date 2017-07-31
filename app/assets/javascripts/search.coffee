@@ -29,7 +29,7 @@ $(document).on 'turbolinks:load', ->
           """
         else if result.object_type == 'User'
           if !result.avatar
-            result.avatar = '/avatar_empty.png'
+            result.avatar = 'avatar_empty.png'
           """
           <a href= "#{result.url}" >
             <div class="row flex-feed">
