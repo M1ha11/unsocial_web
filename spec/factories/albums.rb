@@ -23,5 +23,19 @@ FactoryGirl.define do
   factory :album do
     title                 { Faker::Name.name }
     description           { Faker::Coffee.notes }
+
+    association :user, strategy: :build
+
+    factory :album_with_photos do
+      transient do
+        photos_count 5
+      end
+
+      after(:build) do |album, evaluator|
+        album.photos = build_list(:photo, evaluator.photos_count, album: album)
+      end
+    end
   end
 end
+
+

@@ -32,6 +32,7 @@ class Photo < ApplicationRecord
   validates_integrity_of  :image
   validates_processing_of :image
 
+  validates :image, presence: true
   validates :description, presence: true, length: { maximum: 140 }
 
   settings index: { number_of_shards: 1 } do
