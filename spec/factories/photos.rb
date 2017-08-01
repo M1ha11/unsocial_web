@@ -21,9 +21,19 @@
 
 FactoryGirl.define do
   factory :photo do
-    image                 { Rack::Test::UploadedFile.new(File.join(Rails.root, '/spec/fixtures/avatar.png'), 'image/png') }
+    image                 { Rack::Test::UploadedFile.new(File.join(Rails.root, '/spec/fixtures/1x1.png'), 'image/png') }
     description           { Faker::Coffee.notes }
 
     association :album, strategy: :build
+
+    factory :photo_with_tags do
+      transient do
+        tags_count 5
+      end
+
+      after(:build) do |photo, evaluator|
+        photo.tags = build_list(:tag, evaluator.tags_count, photo: photo)
+      end
+    end
   end
 end

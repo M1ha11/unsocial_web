@@ -17,7 +17,7 @@ class Tag < ApplicationRecord
   has_many :albums, through: :taggings, source: :taggable, source_type: 'Album', dependent: :destroy
   has_many :photos, through: :taggings, source: :taggable, source_type: 'Photo', dependent: :destroy
 
-  validates :content, format: { with: /\A[a-zA-Z]{1,20}\z/ }, uniqueness: true
+  validates :content, format: { with: /\A#[a-zA-Z0-9]{1,20}\z/ }, uniqueness: true
 
   def self.search(q)
     __elasticsearch__.search(

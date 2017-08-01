@@ -29,5 +29,22 @@ RSpec.describe Album, type: :model do
     expect(subject).to be_valid
   end
 
-  include_examples "invalid without attributes", :title
+  include_examples "invalid without attributes", :title, :user
+
+  include_examples "valid without attributes", :description
+
+  describe 'album validity' do
+    shared_examples 'check album validity' do |validity:, photo_count:|
+      context "for album with #{photo_count} photos" do
+        subject { build(:album_with_photos, photos_count: photo_count) }
+        it "is #{validity}" do
+          expect(subject).send(validity ? "to" : "to_not", be_valid)
+        end
+      end
+    end
+
+    include_examples 'check album validity', validity: true, photo_count: 0
+    include_examples 'check album validity', validity: true, photo_count: 50
+    include_examples 'check album validity', validity: false, photo_count: 51
+  end
 end

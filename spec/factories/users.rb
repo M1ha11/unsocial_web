@@ -39,7 +39,7 @@ FactoryGirl.define do
     email                 { Faker::Internet.email }
     password              { Faker::Internet.password }
     adress                { Faker::Address.city }
-    avatar                { Rack::Test::UploadedFile.new(File.join(Rails.root, '/spec/fixtures/avatar.png'), 'image/png') }
+    avatar                { Rack::Test::UploadedFile.new(File.join(Rails.root, '/spec/fixtures/avatar.jpg'), 'image/jpg') }
     confirmed_at          Date.today
     role                  'user'
   end

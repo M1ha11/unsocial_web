@@ -45,12 +45,16 @@ RSpec.describe User, type: :model do
 
   include_examples "invalid without attributes", :email, :password, :first_name, :last_name
 
+  include_examples "valid without attributes", :adress, :avatar
+
   it "invalid with duplicates emails" do
     subject.email = existing_user.email
     expect(subject).to_not be_valid
   end
 
-  it "returns a user's full name as a string" do
-    expect(subject.display_name).to eql("#{subject.first_name} #{subject.last_name}")
+  describe '#display_name' do
+    it "returns a user's full name as a string" do
+      expect(subject.display_name).to eql("#{subject.first_name} #{subject.last_name}")
+    end
   end
 end

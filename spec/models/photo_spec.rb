@@ -22,5 +22,20 @@
 require 'rails_helper'
 
 RSpec.describe Photo, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  subject { build(:photo) }
+
+  it "is valid with valid attributes" do
+    expect(subject).to be_valid
+  end
+
+  include_examples "invalid without attributes", :image, :album
+
+  include_examples "valid without attributes", :description
+
+  describe '#display_name' do
+    it "returns photo with id as a string" do
+      expect(subject.display_name).to eql("photo ##{subject.id}")
+    end
+  end
 end

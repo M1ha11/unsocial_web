@@ -33,7 +33,7 @@ class Photo < ApplicationRecord
   validates_processing_of :image
 
   validates :image, presence: true
-  validates :description, presence: true, length: { maximum: 140 }
+  validates :description, length: { maximum: 140 }
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: "false" do
