@@ -54,5 +54,13 @@ RSpec.describe Tag, type: :model do
       expect(subject.display_name).to eql(subject.content)
     end
   end
+
+  describe ".search" do
+    let(:call) { described_class.search('test') }
+    it "calls search on elasticsearch" do
+      expect(described_class).to receive_message_chain(:__elasticsearch__, :search).and_return("test")
+      expect(call).to eql("test")
+    end
+  end
 end
 

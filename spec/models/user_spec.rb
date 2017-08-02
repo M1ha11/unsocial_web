@@ -61,4 +61,15 @@ RSpec.describe User, type: :model do
       expect(subject.display_name).to eql("#{subject.first_name} #{subject.last_name}")
     end
   end
+
+  describe '#following?' do
+    let(:first_user)   { create(:user) }
+    let(:second_user)  { create(:user) }
+    let!(:followership) { create(:interrelationship, followed: existing_user, follower: first_user) }
+    let!(:invalid_followership) { create(:interrelationship, followed: existing_user, follower: second_user) }
+    it "returns true if subject following other user" do
+      expect(first_user.following?(existing_user)).to eql(true)
+      expect(first_user.following?(second_user)).to eql(false)
+    end
+  end
 end
