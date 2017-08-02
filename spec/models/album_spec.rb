@@ -31,6 +31,9 @@ RSpec.describe Album, type: :model do
 
   include_examples "invalid without attributes", :title, :user
 
+  include_examples "invalid attributes length", { param: :title, length: 50 },
+                                                { param: :description, length: 140 }
+
   include_examples "valid without attributes", :description
 
   describe 'album validity' do
@@ -46,5 +49,13 @@ RSpec.describe Album, type: :model do
     include_examples 'check album validity', validity: true, photo_count: 0
     include_examples 'check album validity', validity: true, photo_count: 50
     include_examples 'check album validity', validity: false, photo_count: 51
+  end
+
+  describe "#tags=" do
+    let(:call) { subject.tags = [] }
+    it "calls index_document on elasticsearch" do
+      expect(subject).to receive_message_chain(:__elasticsearch__, :index_document).and_return("test")
+      expect(call).to eq([])
+    end
   end
 end

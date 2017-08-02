@@ -36,7 +36,9 @@ class User < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  validates :first_name, :last_name, presence: true
+  validates :role, presence: true
+  validates :first_name, :last_name, presence: true, length: { maximum: 30 }
+  validates :adress, length: { maximum: 100 }
 
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable

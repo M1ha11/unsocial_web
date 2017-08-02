@@ -12,4 +12,12 @@ FactoryGirl.define do
   factory :tag do
     content         { "##{Faker::Lorem.characters(10)}" }
   end
+
+  factory :invalid_length_tag, class: Tag do
+    content         { "##{Faker::Lorem.characters(21)}" }
+  end
+
+  factory :invalid_format_tag, class: Tag do
+    content         { Faker::Lorem.characters(10) }
+  end
 end

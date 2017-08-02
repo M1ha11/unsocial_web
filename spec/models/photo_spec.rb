@@ -31,11 +31,21 @@ RSpec.describe Photo, type: :model do
 
   include_examples "invalid without attributes", :image, :album
 
+  include_examples "invalid attributes length", { param: :description, length: 140 }
+
   include_examples "valid without attributes", :description
 
   describe '#display_name' do
     it "returns photo with id as a string" do
       expect(subject.display_name).to eql("photo ##{subject.id}")
+    end
+  end
+
+  describe "#tags=" do
+    let(:call) { subject.tags = [] }
+    it "calls index_document on elasticsearch" do
+      expect(subject).to receive_message_chain(:__elasticsearch__, :index_document).and_return("test")
+      expect(call).to eq([])
     end
   end
 end

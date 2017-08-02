@@ -30,4 +30,6 @@ RSpec.describe Comment, type: :model do
   end
 
   include_examples "invalid without attributes", :content, :user, :photo
+
+  include_examples "invalid attributes length", { param: :content, length: 140 }
 end

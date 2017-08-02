@@ -43,4 +43,15 @@ FactoryGirl.define do
     confirmed_at          Date.today
     role                  'user'
   end
+
+  factory :admin, class: User do
+    first_name            { Faker::Name.first_name }
+    last_name             { Faker::Name.last_name }
+    email                 { Faker::Internet.email }
+    password              { Faker::Internet.password }
+    adress                { Faker::Address.city }
+    avatar                { Rack::Test::UploadedFile.new(File.join(Rails.root, '/spec/fixtures/avatar.jpg'), 'image/jpg') }
+    confirmed_at          Date.today
+    role                  'admin'
+  end
 end

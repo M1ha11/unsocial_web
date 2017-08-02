@@ -17,6 +17,7 @@
 
 FactoryGirl.define do
   factory :interrelationship do
-    association :user, strategy: :build
+    association :follower, factory: :user
+    association :followed, factory: :user
   end
 end

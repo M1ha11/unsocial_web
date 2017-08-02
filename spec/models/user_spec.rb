@@ -43,7 +43,11 @@ RSpec.describe User, type: :model do
     expect(subject).to be_valid
   end
 
-  include_examples "invalid without attributes", :email, :password, :first_name, :last_name
+  include_examples "invalid without attributes", :email, :password, :first_name, :last_name, :role
+
+  include_examples "invalid attributes length", { param: :first_name, length: 30 },
+                                                { param: :last_name, length: 30 },
+                                                { param: :adress, length: 100 }
 
   include_examples "valid without attributes", :adress, :avatar
 

@@ -18,5 +18,11 @@
 require 'rails_helper'
 
 RSpec.describe Interrelationship, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:interrelationship) }
+
+  it "is valid with valid attributes" do
+    expect(subject).to be_valid
+  end
+
+  include_examples "invalid without attributes", :follower, :followed
 end
