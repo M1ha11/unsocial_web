@@ -69,7 +69,7 @@ RSpec.describe Ability, type: :model do
     end
 
     context "signed in admin" do
-      let(:user)                            { create(:admin) }
+      let(:user)                            { create(:user, :admin) }
 
       include_context "signed in users"
       include_context "all users"

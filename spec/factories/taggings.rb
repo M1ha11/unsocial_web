@@ -15,8 +15,15 @@
 #  index_taggings_on_taggable_type_and_taggable_id  (taggable_type,taggable_id)
 #
 
-class Tagging < ApplicationRecord
-  belongs_to :tag
-  belongs_to :taggable, polymorphic: true
-  validates  :tag_id, uniqueness: { scope: [:taggable_type, :taggable_id] }
+FactoryGirl.define do
+  factory :album_tagging, class: Tagging do
+    association :tag, factory: :tag
+    association :taggable, factory: :album
+  end
+
+  factory :photo_tagging, class: Tagging do
+    association :tag, factory: :tag
+    association :taggable, factory: :photo
+  end
 end
+
