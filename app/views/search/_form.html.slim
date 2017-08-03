@@ -1,4 +1,4 @@
 = simple_form_for :search, method: 'get', url: search_path, remote: true do |f|
-  .input-group.add-on
+  .input-group
     = f.text_field :q, id: 'search_field', autocomplete: :off, placeholder: 'Search', class: "form-control typeahead scrollable-dropdown-menu"
 

@@ -4,7 +4,7 @@ class SearchController < ApplicationController
       @results = []
     else
       @results = Elasticsearch::Model.search((params[:query] ? (params[:query] + "*") : "*"),\
-        [Album, Photo, User]).records(includes: {Album: [:user], Photo: [:tags, :taggings]}).to_a
+        [Album, Photo, User]).records(includes: { Album: [:user], Photo: [:album] }).to_a
     end
     render json: @results
   end

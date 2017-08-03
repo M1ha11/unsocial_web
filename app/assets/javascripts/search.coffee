@@ -7,6 +7,7 @@ $(document).on 'turbolinks:load', ->
       wildcard: '%QUERY')
   $('#search_field').typeahead null,
     source: result
+    limit: 20
     templates:
       empty: [
         '<div class="empty-message">'
