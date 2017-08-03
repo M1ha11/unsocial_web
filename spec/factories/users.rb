@@ -46,5 +46,16 @@ FactoryGirl.define do
     trait :admin do
       role 'admin'
     end
+
+    factory :user_with_albums do
+      transient do
+        albums_count 5
+      end
+
+      after(:build) do |user, evaluator|
+        user.albums = build_list(:album, evaluator.albums_count, user: user)
+      end
+    end
   end
 end
+
