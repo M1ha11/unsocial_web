@@ -31,7 +31,7 @@ FactoryGirl.define do
         photos_count 5
       end
 
-      after(:create) do |album, evaluator|
+      after(:build) do |album, evaluator|
         album.photos = build_list(:photo, evaluator.photos_count, album: album)
       end
 

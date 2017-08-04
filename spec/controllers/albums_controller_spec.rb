@@ -6,23 +6,26 @@ RSpec.describe AlbumsController, type: :controller do
     before(:each) { request_exec }
     context 'logged in user' do
       let(:album) { create(:album_with_photos_and_tags, tags_count: 10, user: current_user) }
-      let(:request_exec) { get :show, params: { user_id: album.user.id, id: album.id } }
-      let(:photos) { album.photos }
-      let(:tags) { album.tags }
+      let(:user) { album.user }
+      let(:request_exec) { get :show, params: { user_id: user.id, id: album.id } }
 
       it "must have a current_user" do
         expect(current_user).to_not eq(nil)
       end
 
-      it "returns a success response" do
-        expect(response).to be_success
-      end
+      include_examples "assign variables", :user, :album
 
       it "returns a success response" do
         expect(response).to render_template("show")
       end
 
-      include_examples "assign variables", :photos, :tags
+      it "assign @tags" do
+        expect(assigns(:tags)).to match_array(album.tags)
+      end
+
+      it "assign @photos" do
+        expect(assigns(:photos)).to match_array(album.photos)
+      end
     end
   end
 

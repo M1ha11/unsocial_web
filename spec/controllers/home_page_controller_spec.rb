@@ -3,12 +3,10 @@ require 'rails_helper'
 RSpec.describe HomePageController, type: :controller do
   describe "GET #index" do
     let(:request_exec) { get :index }
-    let(:feed_photos) { current_user.feed_photos }
     context 'logged in user' do
       login_user
       let(:album) { create(:album_with_photos, photos_count: 10) }
       before(:example) { create(:interrelationship, follower: current_user, followed: album.user) }
-
       it "must have a current_user" do
         expect(current_user).to_not eq(nil)
       end
@@ -17,8 +15,6 @@ RSpec.describe HomePageController, type: :controller do
         request_exec
         expect(response).to render_template("index")
       end
-
-      include_examples "assign variables", :feed_photos
 
       it "get 10 photos in desc order to @feed_photos" do
         request_exec
@@ -33,8 +29,6 @@ RSpec.describe HomePageController, type: :controller do
         request_exec
         expect(response).to render_template("index")
       end
-
-      include_examples "not assign variables", :feed_photos
     end
   end
 end

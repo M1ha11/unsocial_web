@@ -41,7 +41,7 @@ RSpec.describe Album, type: :model do
       context "for album with #{photo_count} photos" do
         subject { build(:album_with_photos, photos_count: photo_count) }
         it "is #{validity}" do
-          expect(subject).send(validity ? "to" : "to_not", be_valid)
+          expect(subject.valid?).to eq(validity)
         end
       end
     end
