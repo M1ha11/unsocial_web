@@ -31,8 +31,18 @@ FactoryGirl.define do
         photos_count 5
       end
 
-      after(:build) do |album, evaluator|
+      after(:create) do |album, evaluator|
         album.photos = build_list(:photo, evaluator.photos_count, album: album)
+      end
+
+      factory :album_with_photos_and_tags do
+        transient do
+          tags_count 5
+        end
+
+        after(:create) do |album, evaluator|
+          album.tags = create_list(:tag, evaluator.tags_count)
+        end
       end
     end
   end

@@ -35,6 +35,7 @@ group :development, :test do
   gem 'pry-rails', '0.3.6'
   gem 'bullet', '5.5.1'
   gem 'rspec-rails', '3.6.0'
+
   gem 'factory_girl_rails', '4.8.0'
   gem 'faker', '1.8.4'
 end
@@ -53,7 +54,7 @@ group :development do
 end
 
 group :test do
-  gem 'rails-controller-testing', '0.1.1'
+  gem 'rails-controller-testing'
   gem 'simplecov', '0.14.1'
   gem 'database_cleaner', '1.6.1'
 end

@@ -404,7 +404,7 @@ DEPENDENCIES
   pry-rails (= 0.3.6)
   puma (= 3.4.0)
   rails (= 5.0.1)
-  rails-controller-testing (= 0.1.1)
+  rails-controller-testing
   redis (= 3.3.3)
   responders (= 2.4.0)
   rspec-rails (= 3.6.0)
