@@ -3,7 +3,6 @@ class AlbumsController < ApplicationController
   load_and_authorize_resource through: :user
 
   def new
-    @album = Album.new
   end
 
   def show

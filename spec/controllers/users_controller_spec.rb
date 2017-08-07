@@ -4,10 +4,10 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #show" do
     login_user(:user_with_albums,  albums_count: 10)
     let(:user) { current_user }
-    before(:each) { request_exec }
-    context 'logged in user' do
-      let(:request_exec) { get :show, params: { id: user.id } }
+    let(:request_exec) { get :show, params: { id: user.id } }
 
+    context 'logged in user' do
+      before(:each) { request_exec }
 
       it "must have a current_user" do
         expect(current_user).to_not eq(nil)
@@ -24,17 +24,7 @@ RSpec.describe UsersController, type: :controller do
       end
     end
 
-    context 'not logged in user' do
-      log_out
-      let(:another_user) { create(:user_with_albums, albums_count: 5) }
-      let(:request_exec) { get :show, params: { id: another_user.id } }
-
-      it "returns a success response" do
-        expect(response).to render_template("show")
-      end
-
-      # include_examples "not assign variables", :albums
-    end
+    include_examples 'unauthorized action request', :show
   end
 end
 

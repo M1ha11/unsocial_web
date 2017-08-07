@@ -18,5 +18,10 @@ $(document).on "turbolinks:load", ->
       processResults: (data, params) ->
         results: data.map (tag) ->
           { id: tag.id, text: tag.content }
-
-
+    createTag: (params) ->
+      term = $.trim(params.term)
+      term = "\##{term}"
+      {
+        id: term
+        text: term
+      }
