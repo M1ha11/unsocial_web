@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   describe "GET #show" do
-    login_user(:user_with_albums,  albums_count: 10)
+    login_user(:user_with_albums,  albums_count: 11)
     let(:user) { current_user }
     let(:request_exec) { get :show, params: { id: user.id } }
 
@@ -21,6 +21,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "assign @photos" do
         expect(assigns(:albums)).to match_array(user.albums)
+        expect(assigns(:albums).count).to eq(11)
       end
     end
 

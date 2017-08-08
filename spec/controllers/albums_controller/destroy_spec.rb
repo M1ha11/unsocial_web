@@ -10,12 +10,12 @@ RSpec.describe AlbumsController, type: :controller do
     context 'successful destroy' do
       include_examples "assign variables", :user, :album
 
-      it "destroys the requested album" do
+      it "destroys the requested @album" do
         expect{ request_exec }.to change{ Album.count }.by(-1)
         expect(assigns(:album).destroyed?).to eq(true)
       end
 
-      it "redirects to the user 'show' with a success flash" do
+      it "redirects to the @user 'show' with a success flash" do
         request_exec
         expect(response.content_type).to eq("text/html")
         expect(flash[:notice]).to eq("Album was successfully destroyed.")
@@ -28,12 +28,12 @@ RSpec.describe AlbumsController, type: :controller do
 
       include_examples "assign variables", :user, :album
 
-      it "doesn't destroy the album" do
+      it "doesn't destroy the @album" do
         expect{ request_exec }.to_not change{ Album.count }
         expect(assigns(:album).destroyed?).to eq(false)
       end
 
-      it "redirects to the user 'show' path" do
+      it "redirects to the @user 'show' path" do
         request_exec
         expect(response).to redirect_to(user_path(user))
       end

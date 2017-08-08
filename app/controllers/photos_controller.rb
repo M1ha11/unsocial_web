@@ -4,7 +4,6 @@ class PhotosController < ApplicationController
   load_and_authorize_resource through: :album
 
   def new
-    @photo = Photo.new
   end
 
   def show
@@ -16,8 +15,7 @@ class PhotosController < ApplicationController
   end
 
   def update
-    @photo.update_attributes(photo_params)
-    @photo.tags = TagService.new(params[:photo][:tags]).tags
+    @photo.tags = TagService.new(params[:photo][:tags]).tags if @photo.update_attributes(photo_params)
     photo_respond
   end
 

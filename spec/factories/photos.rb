@@ -31,8 +31,19 @@ FactoryGirl.define do
         tags_count 5
       end
 
-      after(:build) do |photo, evaluator|
-        photo.tags = build_list(:tag, evaluator.tags_count, photo: photo)
+      after(:create) do |photo, evaluator|
+        photo.tags = create_list(:tag, evaluator.tags_count)
+      end
+
+
+      factory :photo_with_tags_and_comments do
+        transient do
+          comments_count 5
+        end
+
+        after(:build) do |photo, evaluator|
+          photo.comments = build_list(:comment, evaluator.comments_count, photo: photo)
+        end
       end
     end
   end

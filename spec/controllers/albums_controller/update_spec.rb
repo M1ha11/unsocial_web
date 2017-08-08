@@ -14,11 +14,14 @@ RSpec.describe AlbumsController, type: :controller do
 
       include_examples "assign variables", :user, :album
 
-      # it "updates the requested album" do
-      #   expect(assigns(:album)).to eq(false)
-      # end
+      it "updates the requested @album" do
+        request_exec
+        expect(assigns(:album).attributes.slice('title', 'description'))
+                              .to include(album_params.except(:tags).stringify_keys)
+        expect(assigns(:album).changed?).to eq(false)
+      end
 
-      it "redirects to the updated album with a success flash" do
+      it "redirects to the updated @album with a success flash" do
         request_exec
         expect(response.content_type).to eq("text/html")
         expect(flash[:notice]).to eq("Album was successfully updated.")
@@ -31,26 +34,27 @@ RSpec.describe AlbumsController, type: :controller do
       end
     end
 
-    # context 'unsuccessful update' do
-    #   before(:each) { album_params[:title] = nil }
+    context 'unsuccessful update' do
+      before(:each) { album_params[:title] = '' }
 
-    #   include_examples "assign variables", :user
+      include_examples "assign variables", :user, :album
 
-    #   it "doesn't update the album" do
-    #     expect{ request_exec }.to_not change{ Album.count }
-    #   end
+      it "doesn't update the @album" do
+        request_exec
+        expect(assigns(:album).changed?).to eq(true)
+      end
 
-    #   it "renders 'new' template with an alert flash" do
-    #     request_exec
-    #     expect(response).to render_template('albums/new')
-    #   end
+      it "renders 'edit' template with an alert flash" do
+        request_exec
+        expect(response).to render_template('albums/edit')
+      end
 
-    #   it "doesn't save @album tags" do
-    #     request_exec
-    #     expect(assigns(:album).tags.map(&:content)).to_not include(album_params[:tags])
-    #   end
-    # end
+      it "doesn't save @album tags" do
+        request_exec
+        expect(assigns(:album).tags.map(&:content)).to_not include(album_params[:tags])
+      end
+    end
 
-    # include_examples 'unauthorized action request', :update
+    include_examples 'unauthorized action request', :update
   end
 end

@@ -14,12 +14,12 @@ RSpec.describe AlbumsController, type: :controller do
 
       include_examples "assign variables", :user
 
-      it "creates the album" do
+      it "creates the @album" do
         expect{ request_exec }.to change{ Album.count }.by(1)
         expect(assigns(:album)).to eq(album)
       end
 
-      it "redirects to the created album with a success flash" do
+      it "redirects to the created @album with a success flash" do
         request_exec
         expect(response.content_type).to eq("text/html")
         expect(flash[:notice]).to eq("Album was successfully created.")
@@ -37,7 +37,7 @@ RSpec.describe AlbumsController, type: :controller do
 
       include_examples "assign variables", :user
 
-      it "doesn't create the album" do
+      it "doesn't create the @album" do
         expect{ request_exec }.to_not change{ Album.count }
       end
 

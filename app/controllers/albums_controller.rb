@@ -14,8 +14,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @album.update_attributes(album_params)
-    @album.tags = TagService.new(params[:album][:tags]).tags
+    @album.tags = TagService.new(params[:album][:tags]).tags if @album.update_attributes(album_params)
     album_respond
   end
 

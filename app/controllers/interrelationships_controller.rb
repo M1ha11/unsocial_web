@@ -2,8 +2,7 @@ class InterrelationshipsController < ApplicationController
   load_and_authorize_resource
 
   def create
-    @interrelationship.save
-    Notifications::NotifyFollower.new(@interrelationship).notify
+    Notifications::NotifyFollower.new(@interrelationship).notify if @interrelationship.save
   end
 
   def destroy
