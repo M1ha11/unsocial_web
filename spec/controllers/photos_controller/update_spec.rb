@@ -3,15 +3,21 @@ require 'rails_helper'
 RSpec.describe PhotosController, type: :controller do
   login_user
   describe "PATCH #update" do
-    let(:user) { current_user }
-    let(:album) { create(:album, user: user) }
+    let(:user)                     { current_user }
+    let(:album)                    { create(:album, user: user) }
     let(:created_photo_tags_count) { 3 }
-    let(:photo) { create(:photo_with_tags, tags_count: created_photo_tags_count, album: album) }
-    let(:tags_count) { 7 }
-    let(:tags) {  tags_count.times.map { FactoryGirl.attributes_for(:tag)[:content] } }
-    let(:photo_params) { FactoryGirl.attributes_for(:photo) }
-    before(:each) { photo_params[:tags] = tags }
-    let(:request_exec) { patch :update, params: { user_id: user.id, album_id: album.id, id: photo.id, photo: photo_params } }
+    let(:photo)                    { create(:photo_with_tags, tags_count: created_photo_tags_count, album: album) }
+
+    let(:tags_count)               { 7 }
+    let(:created_tags)             { tags_count.times.map { create(:tag) } }
+    let(:tags)                     { created_tags.map { |tag| tag[:content] } }
+
+    let(:photo_params)             { FactoryGirl.attributes_for(:photo) }
+    before(:each)                  { photo_params[:tags] = tags }
+    let(:request_exec)             { patch :update, params: { user_id: user.id, album_id: album.id,
+                                                              id: photo.id, photo: photo_params } }
+    let(:tag_service)              { class_double('TagService').as_stubbed_const }
+    before(:each)                  { allow(tag_service).to receive_message_chain(:new, :tags) { created_tags } }
 
     context 'successful update' do
 
@@ -29,6 +35,11 @@ RSpec.describe PhotosController, type: :controller do
         expect(response.content_type).to eq("text/html")
         expect(flash[:notice]).to eq("Photo was successfully updated.")
         expect(response).to redirect_to(user_album_path(user, album))
+      end
+
+      it "uses tag service for tags" do
+        expect(tag_service).to receive_message_chain(:new, :tags)
+        request_exec
       end
 
       it "save @photo tags" do
@@ -51,6 +62,11 @@ RSpec.describe PhotosController, type: :controller do
       it "renders 'edit' template with an alert flash" do
         request_exec
         expect(response).to render_template('photos/edit')
+      end
+
+      it "don't use tag service for tags" do
+        expect(tag_service).to_not receive(:new)
+        request_exec
       end
 
       it "doesn't save @photo tags" do

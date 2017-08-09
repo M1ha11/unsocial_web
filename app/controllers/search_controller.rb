@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def search
-    if params[:query].nil?
+    if params[:query].empty?
       @results = []
     else
       @results = Elasticsearch::Model.search((params[:query] ? (params[:query] + "*") : "*"),\
@@ -10,7 +10,7 @@ class SearchController < ApplicationController
   end
 
   def tag_search
-    if params[:q].nil?
+    if params[:q].empty?
       @tags = []
     else
       @tags = Tag.search(params[:q]).records.all.first(10)

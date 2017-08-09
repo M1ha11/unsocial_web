@@ -7,7 +7,7 @@ RSpec.describe InterrelationshipsController, type: :controller do
     let(:relationship) { Interrelationship.last }
     let(:request_exec) { post :create, params: { followed_id: user.id }, xhr: true }
     let(:notification) { class_double('Notifications::NotifyFollower').as_stubbed_const }
-
+    before(:each) { allow(notification).to receive_message_chain(:new, :notify) { 'test' } }
     context 'successful create' do
 
       it "creates the @interrelationship" do
@@ -22,9 +22,8 @@ RSpec.describe InterrelationshipsController, type: :controller do
       end
 
       it "notify followed user" do
-        allow(notification).to receive_message_chain(:new, :notify) { 'test' }
+        expect(notification).to receive_message_chain(:new, :notify)
         request_exec
-        expect(notification.new(relationship).notify).to eq('test')
       end
     end
 
@@ -54,6 +53,7 @@ RSpec.describe InterrelationshipsController, type: :controller do
     let(:request_exec) { delete :destroy, params: { id: interrelationship.id }, xhr: true }
 
     context 'successful destroy' do
+      include_examples "assign variables", :interrelationship
 
       it "destroys the requested @interrelationship" do
         expect{ request_exec }.to change{ Interrelationship.count }.by(-1)
@@ -69,6 +69,8 @@ RSpec.describe InterrelationshipsController, type: :controller do
 
     context 'unsuccessful destroy' do
       before(:example) { allow_any_instance_of(Interrelationship).to receive(:destroy).and_return(false) }
+
+      include_examples "assign variables", :interrelationship
 
       it "doesn't destroy the @interrelationship" do
         expect{ request_exec }.to_not change{ Interrelationship.count }
