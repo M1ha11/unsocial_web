@@ -72,4 +72,12 @@ RSpec.describe User, type: :model do
       expect(first_user.following?(second_user)).to eql(false)
     end
   end
+
+  context 'elasticsearch index' do
+    before(:each) { create(:user, first_name: 'appledoc') }
+    it 'be indexed' do
+      described_class.__elasticsearch__.refresh_index!
+      expect(described_class.__elasticsearch__.search('appledoc').records.length).to eq(1)
+    end
+  end
 end

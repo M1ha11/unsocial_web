@@ -1,7 +1,7 @@
 require 'rails_helper'
-include Rails.application.routes.url_helpers
 
 RSpec.describe Notifications::NotifyFollower do
+  include Rails.application.routes.url_helpers
   describe '#notify' do
     let(:interrelationship) { create(:interrelationship) }
     subject { described_class.new(interrelationship) }

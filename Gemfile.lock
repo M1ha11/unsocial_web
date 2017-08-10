@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/elasticsearch/elasticsearch-ruby.git
+  revision: 725563c87ce7a7ebf4a473b3bcc1384fe2f67948
+  specs:
+    elasticsearch-extensions (0.0.26)
+      ansi
+      elasticsearch
+      ruby-prof
+
+GIT
   remote: https://github.com/DmitryArtyomov/iziToast-rails
   revision: 87b7146932ce464c9015e07bf77b6a632ec7bd3f
   specs:
@@ -79,6 +88,7 @@ GEM
     annotate (2.7.2)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
+    ansi (1.5.0)
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (7.1.4)
@@ -139,12 +149,12 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.3)
     docile (1.1.5)
-    elasticsearch (5.0.4)
-      elasticsearch-api (= 5.0.4)
-      elasticsearch-transport (= 5.0.4)
-    elasticsearch-api (5.0.4)
+    elasticsearch (5.0.3)
+      elasticsearch-api (= 5.0.3)
+      elasticsearch-transport (= 5.0.3)
+    elasticsearch-api (5.0.3)
       multi_json
-    elasticsearch-transport (5.0.4)
+    elasticsearch-transport (5.0.3)
       faraday
       multi_json
     erubis (2.7.0)
@@ -300,6 +310,7 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
+    ruby-prof (0.16.2)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -389,6 +400,7 @@ DEPENDENCIES
   coffee-rails (= 4.2.1)
   database_cleaner (= 1.6.1)
   devise (= 4.3.0)
+  elasticsearch-extensions!
   elasticsearch-model!
   elasticsearch-rails!
   factory_girl_rails (= 4.8.0)

@@ -58,4 +58,12 @@ RSpec.describe Album, type: :model do
       expect(call).to eq([])
     end
   end
+
+  context 'elasticsearch index' do
+    before(:each) { create(:album, title: 'unknow') }
+    it 'be indexed' do
+      described_class.__elasticsearch__.refresh_index!
+      expect(described_class.__elasticsearch__.search('unknow').records.length).to eq(1)
+    end
+  end
 end

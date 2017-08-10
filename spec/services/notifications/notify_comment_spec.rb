@@ -1,7 +1,7 @@
 require 'rails_helper'
-include Rails.application.routes.url_helpers
 
 RSpec.describe Notifications::NotifyComment do
+  include Rails.application.routes.url_helpers
   describe '#notify' do
     let(:comment) { create(:comment) }
     subject { described_class.new(comment) }

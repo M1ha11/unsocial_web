@@ -3,31 +3,45 @@ require 'rails_helper'
 RSpec.describe SearchController, type: :controller do
   login_user
   describe "GET #search" do
-
     let(:request_exec) { get :search, params: { query: query, autocomplete: true }, format: :json }
-    let(:output_hash) { { test: 'test' } }
-    let(:elasticsearch) { class_double("Elasticsearch::Model").as_stubbed_const }
-    before(:example) { allow(elasticsearch).to receive_message_chain(:search, :records, :to_a) { output_hash } }
+    context 'elastic stubbed' do
+      let(:output_hash) { { test: 'test' } }
+      let(:elasticsearch) { class_double("Elasticsearch::Model").as_stubbed_const }
+      before(:example) { allow(elasticsearch).to receive_message_chain(:search, :records, :to_a) { output_hash } }
 
-    context 'query exist' do
-      let(:query) { 'query' }
-      it "uses ElasticSearch to assigns the @results" do
-        request_exec
-        expect(assigns(:results)).to eq(output_hash)
+      context 'query exist' do
+        let(:query) { 'query' }
+        it "uses ElasticSearch to assigns the @results" do
+          request_exec
+          expect(assigns(:results)).to eq(output_hash)
+        end
+
+        it "renders @results collection in JSON format" do
+          request_exec
+          expect(response.content_type).to eq('application/json')
+          expect(response.body).to eq(output_hash.to_json)
+        end
       end
 
-      it "renders @results collection in JSON format" do
-        request_exec
-        expect(response.content_type).to eq('application/json')
-        expect(response.body).to eq(output_hash.to_json)
+      context 'query nil' do
+        let(:query) { nil }
+        it "uses ElasticSearch to assigns the @results" do
+          request_exec
+          expect(assigns(:results)).to eq([])
+        end
       end
     end
 
-    context 'query nil' do
-      let(:query) { nil }
-      it "uses ElasticSearch to assigns the @results" do
+    context 'elasticsearch multimodel' do
+      let!(:album) { create(:album, title: 'testing_album') }
+      let!(:user)  { create(:user, first_name: 'testing_user') }
+      let!(:photo) { create(:photo, description: 'testing_photo') }
+      before(:each) { sleep 1 }
+      let(:query)  { 'testing' }
+      it 'founds multimodel results' do
         request_exec
-        expect(assigns(:results)).to eq([])
+        expect(assigns(:results)).to match_array([album, user, photo])
+        expect(assigns(:results).count).to eq(3)
       end
     end
   end

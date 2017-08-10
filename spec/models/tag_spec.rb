@@ -55,11 +55,19 @@ RSpec.describe Tag, type: :model do
     end
   end
 
-  describe ".search" do
-    let(:call) { described_class.search('test') }
-    it "calls search on elasticsearch" do
-      expect(described_class).to receive_message_chain(:__elasticsearch__, :search).and_return("test")
-      expect(call).to eql("test")
+  context 'elasticsearch index' do
+    describe ".search" do
+      let(:call) { described_class.search('test') }
+      it "calls search on elasticsearch" do
+        expect(described_class).to receive_message_chain(:__elasticsearch__, :search).and_return("test")
+        expect(call).to eql("test")
+      end
+    end
+
+    it 'be indexed' do
+      create(:tag, content: '#testelastic')
+      described_class.__elasticsearch__.refresh_index!
+      expect(described_class.search('#testelastic').records.length).to eq(1)
     end
   end
 end
