@@ -54,7 +54,6 @@ RSpec.describe TagService do
   include_examples 'check tags validation', tags_invalid_count: 10, tags_valid_count: 3
   include_examples 'check tags validation', tags_invalid_count: 5, tags_valid_count: 0
   include_examples 'check tags validation', tags_invalid_count: 0, tags_valid_count: 7
-  include_examples 'check tags validation', tags_invalid_count: 5, tags_valid_count: 5
   include_examples 'check tags validation', tags_invalid_count: 0, tags_valid_count: 0
   end
 end
